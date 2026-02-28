@@ -31,9 +31,7 @@
       padding: 32px 18px 72px;
     }
 
-    header {
-      margin-bottom: 28px;
-    }
+    header { margin-bottom: 28px; }
 
     h1 {
       margin: 0;
@@ -63,7 +61,7 @@
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: 16px;
-      padding: 18px 18px 20px;
+      padding: 18px 18px 22px;
       margin-bottom: 18px;
     }
 
@@ -86,33 +84,56 @@
       color: var(--muted);
     }
 
-    iframe {
-      width: 100%;
-      height: 140px;
-      margin-top: 12px;
-      border: 0;
-      border-radius: 12px;
-      overflow: hidden;
+    /* 🎵 Player Frame */
+    .player {
+      margin-top: 14px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: linear-gradient(180deg, #ffffff 0%, #faf8ff 100%);
+      box-shadow: 0 10px 24px rgba(0,0,0,.06);
     }
 
-    .line {
-      margin-top: 12px;
-      font-size: 15px;
+    .player-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
     }
 
-    .small {
-      margin-top: 10px;
+    .player-title {
       font-size: 13px;
       color: var(--muted);
     }
 
-    .small a {
+    .player-btn {
+      font-size: 12px;
+      font-weight: 600;
       color: var(--accent);
+      background: #efe9f7;
+      padding: 6px 10px;
+      border-radius: 999px;
       text-decoration: none;
+      border: 1px solid rgba(90,61,122,.18);
+      white-space: nowrap;
     }
 
-    .small a:hover {
-      text-decoration: underline;
+    .player-btn:hover {
+      filter: brightness(0.98);
+    }
+
+    .player iframe {
+      width: 100%;
+      height: 140px;
+      border: 0;
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .line {
+      margin-top: 14px;
+      font-size: 15px;
     }
 
     footer {
@@ -126,8 +147,7 @@
     /* 📱 Mobile */
     @media (max-width: 480px) {
       h1 { font-size: 24px; }
-      .wrap { padding-bottom: 64px; }
-      iframe { height: 160px; }
+      .player iframe { height: 160px; }
     }
   </style>
 </head>
@@ -152,21 +172,25 @@
       <div class="scripture">📖 열왕기하 4:31–35</div>
       <div class="song">🎵 하나님의 세계 (Lent)</div>
 
-      <iframe
-        src="https://drive.google.com/file/d/18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ/preview"
-        allow="autoplay"
-        loading="lazy">
-      </iframe>
+      <div class="player">
+        <div class="player-head">
+          <div class="player-title">▶️ 찬양 듣기</div>
+          <a class="player-btn"
+             href="https://drive.google.com/file/d/18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ/view"
+             target="_blank" rel="noopener">
+            Drive에서 열기
+          </a>
+        </div>
+        <iframe
+          src="https://drive.google.com/file/d/18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ/preview"
+          allow="autoplay"
+          loading="lazy">
+        </iframe>
+      </div>
 
       <p class="line">
         주님이 이미 임하신 세계를, 우리는 기도로 걷는다.
       </p>
-
-      <div class="small">
-        <a href="https://drive.google.com/file/d/18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ/view" target="_blank" rel="noopener">
-          Drive에서 원본 열기
-        </a>
-      </div>
     </section>
 
     <!-- 2/28 -->
@@ -176,21 +200,25 @@
       <div class="scripture">📖 마가복음 2:1–5</div>
       <div class="song">🎵 혼자 걷지 않을거예요 (Lent)</div>
 
-      <iframe
-        src="https://drive.google.com/file/d/17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_/preview"
-        allow="autoplay"
-        loading="lazy">
-      </iframe>
+      <div class="player">
+        <div class="player-head">
+          <div class="player-title">▶️ 찬양 듣기</div>
+          <a class="player-btn"
+             href="https://drive.google.com/file/d/17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_/view"
+             target="_blank" rel="noopener">
+            Drive에서 열기
+          </a>
+        </div>
+        <iframe
+          src="https://drive.google.com/file/d/17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_/preview"
+          allow="autoplay"
+          loading="lazy">
+        </iframe>
+      </div>
 
       <p class="line">
         우리는 혼자가 아니라, 서로의 믿음에 들려 주님 앞으로 간다.
       </p>
-
-      <div class="small">
-        <a href="https://drive.google.com/file/d/17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_/view" target="_blank" rel="noopener">
-          Drive에서 원본 열기
-        </a>
-      </div>
     </section>
 
     <footer>
