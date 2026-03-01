@@ -269,7 +269,7 @@
     }
     .songmeta{ font-size:12px; color:var(--muted2); font-weight:900; }
 
-    /* Player */
+    /* Player (kept, but iframe removed) */
     .player{
       margin-top:12px;
       padding:12px;
@@ -301,20 +301,6 @@
       white-space:nowrap;
     }
     .link:hover{ filter:brightness(1.06); }
-
-    .embed{
-      border-radius:12px;
-      overflow:hidden;
-      background:var(--embedBg);
-      border:1px solid var(--embedLine);
-      box-shadow: var(--embedShadow);
-    }
-    .embed iframe{
-      width:100%;
-      height:86px; /* reduced */
-      border:0;
-      display:block;
-    }
 
     .one-liner{
       margin-top:12px;
@@ -387,7 +373,40 @@
       .wrap{ padding:22px 14px 70px; }
       h1{ font-size:26px; }
       .tlabel{ display:none; }
-      .embed iframe{ height:76px; } /* mobile reduced */
+    }
+
+    /* ===== Minimal Custom Audio Player ===== */
+    .mplayer{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:rgba(18,18,18,.45);
+    }
+    .mp-btn{
+      width:38px;
+      height:38px;
+      border-radius:10px;
+      border:1px solid rgba(255,181,92,.22);
+      background:rgba(255,181,92,.10);
+      color:var(--accent);
+      font-weight:950;
+      cursor:pointer;
+      flex:0 0 auto;
+    }
+    .mp-seek{
+      flex:1;
+      accent-color: var(--accent);
+      min-width:120px;
+    }
+    .mp-time{
+      font-size:12px;
+      color:var(--muted2);
+      font-weight:900;
+      white-space:nowrap;
+      flex:0 0 auto;
     }
   </style>
 </head>
@@ -423,8 +442,6 @@
         <a class="titem" href="#d0226" data-date="02-26"><div class="tpill"><span class="tdot"></span><span class="tdate">2/26</span><span class="tlabel">Rainbow Answer</span></div></a>
         <a class="titem" href="#d0227" data-date="02-27"><div class="tpill"><span class="tdot"></span><span class="tdate">2/27</span><span class="tlabel">Prayer Walk</span></div></a>
         <a class="titem" href="#d0228" data-date="02-28"><div class="tpill"><span class="tdot"></span><span class="tdate">2/28</span><span class="tlabel">Faith of Friends</span></div></a>
-
-        <!-- ✅ NEW: 3/1 -->
         <a class="titem" href="#d0301" data-date="03-01"><div class="tpill"><span class="tdot"></span><span class="tdate">3/1</span><span class="tlabel">Go and Tell</span></div></a>
       </div>
     </section>
@@ -438,13 +455,20 @@
       </div>
       <div class="scripture">📖 레위기 25:35–43</div>
       <div class="songs"><span class="songchip"><span class="note">♪</span>Reckless Love</span></div>
+
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/19mR4h9sRhYgCqeY4J_ZZPuk7VgvwxB4M/view" target="_blank" rel="noopener">Drive에서 열기</a>
+          <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-19.mp3" target="_blank" rel="noopener">파일 열기</a>
         </div>
-        <div class="embed"><iframe src="https://drive.google.com/file/d/19mR4h9sRhYgCqeY4J_ZZPuk7VgvwxB4M/preview" allow="autoplay" loading="lazy"></iframe></div>
+        <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-19.mp3">
+          <button class="mp-btn" type="button" aria-label="재생">▶</button>
+          <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 / 0:00</span>
+          <audio preload="metadata"></audio>
+        </div>
       </div>
+
       <p class="one-liner">조건 없이 베풀어지는 하나님의 사랑 앞에
 계산하지 않는 마음으로 서는 하루</p>
     </section>
@@ -458,13 +482,20 @@
       </div>
       <div class="scripture">📖 데살로니가전서 5:12–23</div>
       <div class="songs"><span class="songchip"><span class="note">♪</span>한나의 노래</span></div>
+
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/1FNmHRRbzaYHS1puO7N72O71M8lVrmbsQ/view" target="_blank" rel="noopener">Drive에서 열기</a>
+          <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-20.mp3" target="_blank" rel="noopener">파일 열기</a>
         </div>
-        <div class="embed"><iframe src="https://drive.google.com/file/d/1FNmHRRbzaYHS1puO7N72O71M8lVrmbsQ/preview" allow="autoplay" loading="lazy"></iframe></div>
+        <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-20.mp3">
+          <button class="mp-btn" type="button" aria-label="재생">▶</button>
+          <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 / 0:00</span>
+          <audio preload="metadata"></audio>
+        </div>
       </div>
+
       <p class="one-liner">삶 전체가 예배가 되도록
 하루의 태도와 선택을 주님께 맡기는 묵상</p>
     </section>
@@ -502,17 +533,29 @@
             <div class="panel" id="panel_ps42_1" role="tabpanel">
               <div class="player-head" style="margin:0 0 10px;">
                 <div class="player-title">🎵 너는 너의 하나님을 바라라</div>
-                <a class="link" href="https://drive.google.com/file/d/1d7heyWkA_2-rwP9czYt1AbdqATa-U91s/view" target="_blank" rel="noopener">Drive에서 열기</a>
+                <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-21-a.mp3" target="_blank" rel="noopener">파일 열기</a>
               </div>
-              <div class="embed"><iframe src="https://drive.google.com/file/d/1d7heyWkA_2-rwP9czYt1AbdqATa-U91s/preview" allow="autoplay" loading="lazy"></iframe></div>
+
+              <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-21-a.mp3">
+                <button class="mp-btn" type="button" aria-label="재생">▶</button>
+                <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+                <span class="mp-time">0:00 / 0:00</span>
+                <audio preload="metadata"></audio>
+              </div>
             </div>
 
             <div class="panel" id="panel_ps42_2" role="tabpanel">
               <div class="player-head" style="margin:0 0 10px;">
                 <div class="player-title">🎵 목마른 사슴이</div>
-                <a class="link" href="https://drive.google.com/file/d/1bqZgjst5zJsmVT6pZFK5-dT3t7cmctSe/view" target="_blank" rel="noopener">Drive에서 열기</a>
+                <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-21-b.mp3" target="_blank" rel="noopener">파일 열기</a>
               </div>
-              <div class="embed"><iframe src="https://drive.google.com/file/d/1bqZgjst5zJsmVT6pZFK5-dT3t7cmctSe/preview" allow="autoplay" loading="lazy"></iframe></div>
+
+              <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-21-b.mp3">
+                <button class="mp-btn" type="button" aria-label="재생">▶</button>
+                <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+                <span class="mp-time">0:00 / 0:00</span>
+                <audio preload="metadata"></audio>
+              </div>
             </div>
           </div>
         </div>
@@ -531,13 +574,20 @@
       </div>
       <div class="scripture">📖 요한일서 4:16–21</div>
       <div class="songs"><span class="songchip"><span class="note">♪</span>사랑은 여기 있으니</span></div>
+
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/1DX6hIalzoAX_13R5E9eFDaAh0EMnkd1S/view" target="_blank" rel="noopener">Drive에서 열기</a>
+          <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-22.mp3" target="_blank" rel="noopener">파일 열기</a>
         </div>
-        <div class="embed"><iframe src="https://drive.google.com/file/d/1DX6hIalzoAX_13R5E9eFDaAh0EMnkd1S/preview" allow="autoplay" loading="lazy"></iframe></div>
+        <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-22.mp3">
+          <button class="mp-btn" type="button" aria-label="재생">▶</button>
+          <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 / 0:00</span>
+          <audio preload="metadata"></audio>
+        </div>
       </div>
+
       <p class="one-liner">사랑을 배워가는
 하나님께 먼저 사랑받은 존재로 서기</p>
     </section>
@@ -553,13 +603,20 @@
       <div class="songs">
         <span class="songchip"><span class="note">♪</span>내 마음의 한자리 + 주님만이 왕이십니다</span>
       </div>
+
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/1AAtkVltNvGm_EsuwccRuMeSJxNu9AP3i/view" target="_blank" rel="noopener">Drive에서 열기</a>
+          <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-23.mp3" target="_blank" rel="noopener">파일 열기</a>
         </div>
-        <div class="embed"><iframe src="https://drive.google.com/file/d/1AAtkVltNvGm_EsuwccRuMeSJxNu9AP3i/preview" allow="autoplay" loading="lazy"></iframe></div>
+        <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-23.mp3">
+          <button class="mp-btn" type="button" aria-label="재생">▶</button>
+          <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 / 0:00</span>
+          <audio preload="metadata"></audio>
+        </div>
       </div>
+
       <p class="one-liner">드러남이 아닌 물러섬으로
 주님을 가리키는 리더십</p>
     </section>
@@ -573,13 +630,20 @@
       </div>
       <div class="scripture">📖 이사야 53:1–6</div>
       <div class="songs"><span class="songchip"><span class="note">♪</span>주님과 호숫가를 거닐다</span></div>
+
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/1jP_u2klCiMLQ2WlojhnhA-j2oIx4AuAv/view" target="_blank" rel="noopener">Drive에서 열기</a>
+          <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-24.mp3" target="_blank" rel="noopener">파일 열기</a>
         </div>
-        <div class="embed"><iframe src="https://drive.google.com/file/d/1jP_u2klCiMLQ2WlojhnhA-j2oIx4AuAv/preview" allow="autoplay" loading="lazy"></iframe></div>
+        <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-24.mp3">
+          <button class="mp-btn" type="button" aria-label="재생">▶</button>
+          <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 / 0:00</span>
+          <audio preload="metadata"></audio>
+        </div>
       </div>
+
       <p class="one-liner">알아보지 못했던 하나님,
 그러나 끝까지 우리를 향해 걸어오신 분</p>
     </section>
@@ -593,13 +657,20 @@
       </div>
       <div class="scripture">📖 출애굽기 20:1–4, 7–8, 12–17</div>
       <div class="songs"><span class="songchip"><span class="note">♪</span>어둔 날 다 지나고</span></div>
+
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/1ylmoYswpcSDhAsPDAf3aZExY1VOn1Y3l/view" target="_blank" rel="noopener">Drive에서 열기</a>
+          <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-25.mp3" target="_blank" rel="noopener">파일 열기</a>
         </div>
-        <div class="embed"><iframe src="https://drive.google.com/file/d/1ylmoYswpcSDhAsPDAf3aZExY1VOn1Y3l/preview" allow="autoplay" loading="lazy"></iframe></div>
+        <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-25.mp3">
+          <button class="mp-btn" type="button" aria-label="재생">▶</button>
+          <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 / 0:00</span>
+          <audio preload="metadata"></audio>
+        </div>
       </div>
+
       <p class="one-liner">하나님의 이름을 부르며
 그 이름의 무게를 다시 배우는 시간</p>
     </section>
@@ -617,9 +688,14 @@
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/1MBC8MczAvlbQRsLOdh3OvMibN-gDF147/view" target="_blank" rel="noopener">Drive에서 열기</a>
+          <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-26.mp3" target="_blank" rel="noopener">파일 열기</a>
         </div>
-        <div class="embed"><iframe src="https://drive.google.com/file/d/1MBC8MczAvlbQRsLOdh3OvMibN-gDF147/preview" allow="autoplay" loading="lazy"></iframe></div>
+        <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-26.mp3">
+          <button class="mp-btn" type="button" aria-label="재생">▶</button>
+          <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 / 0:00</span>
+          <audio preload="metadata"></audio>
+        </div>
       </div>
 
       <details class="lyrics">
@@ -692,14 +768,19 @@
         <span class="vibe"><span class="icon">🙏</span> 기도 · 걸음</span>
       </div>
       <div class="scripture">📖 열왕기하 4:31–35</div>
-      <div class="songs"><span class="songchip"><span class="note">♪</span>하나님의 세계</span></div>
+      <div class="songs"><span class="songchip"><span class="note">♪</span>하나님의 세계 (Lent)</span></div>
 
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ/view" target="_blank" rel="noopener">Drive에서 열기</a>
+          <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-27.mp3" target="_blank" rel="noopener">파일 열기</a>
         </div>
-        <div class="embed"><iframe src="https://drive.google.com/file/d/18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ/preview" allow="autoplay" loading="lazy"></iframe></div>
+        <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-27.mp3">
+          <button class="mp-btn" type="button" aria-label="재생">▶</button>
+          <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 / 0:00</span>
+          <audio preload="metadata"></audio>
+        </div>
       </div>
 
       <p class="one-liner">주님이 이미 임하신 세계를, 우리는 기도로 걷는다.</p>
@@ -713,20 +794,25 @@
         <span class="vibe"><span class="icon">🤝</span> 친구 · 믿음</span>
       </div>
       <div class="scripture">📖 마가복음 2:1–5</div>
-      <div class="songs"><span class="songchip"><span class="note">♪</span>혼자 걷지 않을 거예요</span></div>
+      <div class="songs"><span class="songchip"><span class="note">♪</span>혼자 걷지 않을 거예요 (Lent)</span></div>
 
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_/view" target="_blank" rel="noopener">Drive에서 열기</a>
+          <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-28.mp3" target="_blank" rel="noopener">파일 열기</a>
         </div>
-        <div class="embed"><iframe src="https://drive.google.com/file/d/17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_/preview" allow="autoplay" loading="lazy"></iframe></div>
+        <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-28.mp3">
+          <button class="mp-btn" type="button" aria-label="재생">▶</button>
+          <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 / 0:00</span>
+          <audio preload="metadata"></audio>
+        </div>
       </div>
 
       <p class="one-liner">우리는 혼자가 아니라, 서로의 믿음에 들려 주님 앞으로 간다.</p>
     </section>
 
-    <!-- ✅ NEW: 3/1 -->
+    <!-- 3/1 -->
     <section class="card v2" id="d0301" data-date="03-01">
       <div class="meta">🗓️ 3월 1일 (주일)</div>
       <div class="theme-row">
@@ -742,10 +828,13 @@
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/1mZOhkJjmZHK6n_5lCHZSFXOpLobHTLUD/view?usp=drive_link" target="_blank" rel="noopener">Drive에서 열기</a>
+          <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-01.mp3" target="_blank" rel="noopener">파일 열기</a>
         </div>
-        <div class="embed">
-          <iframe src="https://drive.google.com/file/d/1mZOhkJjmZHK6n_5lCHZSFXOpLobHTLUD/preview" allow="autoplay" loading="lazy"></iframe>
+        <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-01.mp3">
+          <button class="mp-btn" type="button" aria-label="재생">▶</button>
+          <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 / 0:00</span>
+          <audio preload="metadata"></audio>
         </div>
       </div>
 
@@ -805,6 +894,85 @@
       setTimeout(() => {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 250);
+    })();
+
+    /* ===== Minimal Audio Players ===== */
+    (function initMinimalPlayers(){
+      const fmt = (s)=>{
+        if(!isFinite(s) || s < 0) return '0:00';
+        const m = Math.floor(s/60);
+        const ss = String(Math.floor(s%60)).padStart(2,'0');
+        return `${m}:${ss}`;
+      };
+
+      const players = Array.from(document.querySelectorAll('.mplayer[data-audio-src]'));
+      const audios = players.map(p => p.querySelector('audio')).filter(Boolean);
+
+      const stopOthers = (currentAudio)=>{
+        audios.forEach(a=>{
+          if(a && a !== currentAudio){
+            a.pause();
+          }
+        });
+      };
+
+      players.forEach(p=>{
+        const src = p.getAttribute('data-audio-src');
+        const audio = p.querySelector('audio');
+        const btn = p.querySelector('.mp-btn');
+        const seek = p.querySelector('.mp-seek');
+        const time = p.querySelector('.mp-time');
+
+        if(!audio || !btn || !seek || !time) return;
+
+        audio.src = src;
+        audio.preload = 'metadata';
+
+        const setBtn = ()=>{
+          btn.textContent = audio.paused ? '▶' : '❚❚';
+          btn.setAttribute('aria-label', audio.paused ? '재생' : '일시정지');
+        };
+
+        btn.addEventListener('click', async ()=>{
+          stopOthers(audio);
+
+          if(audio.paused){
+            try{
+              await audio.play();
+            }catch(e){
+              // autoplay policy / interaction issues
+            }
+          }else{
+            audio.pause();
+          }
+          setBtn();
+        });
+
+        audio.addEventListener('loadedmetadata', ()=>{
+          time.textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration)}`;
+        });
+
+        audio.addEventListener('timeupdate', ()=>{
+          seek.value = (audio.currentTime / audio.duration) * 100 || 0;
+          time.textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration)}`;
+        });
+
+        seek.addEventListener('input', ()=>{
+          if(audio.duration){
+            audio.currentTime = (seek.value/100) * audio.duration;
+          }
+        });
+
+        audio.addEventListener('ended', ()=>{
+          seek.value = 0;
+          setBtn();
+        });
+
+        audio.addEventListener('pause', setBtn);
+        audio.addEventListener('play', setBtn);
+
+        setBtn();
+      });
     })();
   </script>
 </body>
