@@ -5,16 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jay's Lent Devotional</title>
 
-  <!-- SUIT -->
+  <!-- SUIT for body text -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    @font-face{
-      font-family:'HannaPro';
-      src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
-      font-display:swap;
+    /* Baemin-like title font (HannaPro) */
+    @font-face {
+      font-family: 'HannaPro';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
     }
 
     :root{
@@ -24,6 +27,7 @@
       --muted:#b9b6b0;
       --muted2:#9a9893;
 
+      /* Accent A */
       --accent:#ffb55c;
       --accent2:#ff7a18;
 
@@ -33,160 +37,700 @@
 
       --playerBgA: rgba(255,181,92,.14);
       --playerBgB: rgba(255,122,24,.10);
+      --playerSurface: rgba(18,18,18,.6);
+
+      --embedBg: rgba(0,0,0,.35);
+      --embedLine: rgba(255,255,255,.10);
+      --embedShadow: 0 10px 22px rgba(0,0,0,.35);
+
+      --pillBg: rgba(18,18,18,.55);
+      --pillLine: rgba(255,255,255,.08);
+
+      --todayGlow: rgba(255,181,92,.26);
+      --todayLine: rgba(255,122,24,.32);
     }
 
-    *{box-sizing:border-box}
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      font-family:"SUIT",-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+      font-family:"SUIT",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
       background:
-        radial-gradient(1000px 380px at 20% -10%, rgba(255,181,92,.16), transparent 60%),
-        radial-gradient(800px 360px at 90% 20%, rgba(255,122,24,.10), transparent 62%),
-        linear-gradient(180deg,var(--bg),var(--bg2));
+        radial-gradient(1100px 420px at 20% -10%, rgba(255,181,92,.16), transparent 60%),
+        radial-gradient(900px 380px at 90% 20%, rgba(255,122,24,.10), transparent 62%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
       color:var(--ink);
+      line-height:1.65;
     }
 
-    .wrap{max-width:820px;margin:0 auto;padding:26px 18px 80px}
+    .wrap{ max-width:820px; margin:0 auto; padding:26px 18px 78px; }
+    header{ margin-bottom:18px; }
 
     h1{
       margin:0;
       font-size:28px;
-      font-family:'HannaPro',sans-serif;
+      letter-spacing:.2px;
+      font-family:'HannaPro',"SUIT",sans-serif;
     }
-    .sub{margin-top:8px;color:var(--muted)}
+    .badge{
+      display:inline-block; margin-left:8px; padding:3px 10px; border-radius:999px;
+      background:var(--soft); color:var(--accent); font-size:12px; font-weight:900;
+      vertical-align:middle;
+      border:1px solid rgba(255,181,92,.22);
+      font-family:"SUIT",sans-serif;
+    }
+    .sub{ margin-top:10px; color:var(--muted); font-size:15px; }
 
-    /* card */
-    .card{
-      background:rgba(32,32,34,.92);
+    /* ===== Timeline ===== */
+    .timeline{
+      margin:18px 0 26px;
+      padding:14px 14px;
+      background:linear-gradient(180deg, rgba(32,32,34,.92) 0%, rgba(27,27,28,.92) 100%);
       border:1px solid var(--line);
       border-radius:16px;
-      padding:18px;
-      margin:18px 0;
-      box-shadow:var(--shadow);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
     }
-    .meta{color:var(--accent);font-weight:900}
-    .theme-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-    .theme{
-      font-family:'HannaPro';
-      font-size:20px;
-      margin:4px 0;
-    }
-    .vibe{
-      display:inline-flex;gap:6px;align-items:center;
-      padding:4px 10px;border-radius:999px;
-      border:1px solid rgba(255,181,92,.18);
-      background:rgba(18,18,18,.45);
-      font-size:12px;font-weight:800;
-    }
-    .vibe .icon{color:var(--accent)}
 
-    .scripture{color:var(--muted);font-size:14px}
-
-    /* ===== 🎵 Song chip (A 적용) ===== */
-    .songline{
-      margin-top:8px;
+    .timeline-top{
       display:flex;
-      flex-wrap:wrap;
-      gap:8px;
       align-items:center;
-      font-size:13px;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:10px;
+      flex-wrap:wrap;
     }
-    .songchip{
+    .timeline-title{
+      font-size:14px;
+      color:var(--accent);
+      font-family:'HannaPro',"SUIT",sans-serif;
+      letter-spacing:.2px;
+    }
+
+    .today-badge{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding:7px 10px;
+      padding:6px 10px;
       border-radius:999px;
       border:1px solid rgba(255,181,92,.22);
-      background:rgba(255,181,92,.12);
-      color:rgba(241,239,233,.96);
+      background: radial-gradient(700px 120px at 10% 40%, rgba(255,181,92,.18), transparent 55%),
+                  rgba(18,18,18,.55);
+      color:var(--accent);
+      font-size:12px;
+      font-weight:950;
+      white-space:nowrap;
+    }
+    .today-badge .spark{
+      width:10px; height:10px; border-radius:50%;
+      background:var(--accent2);
+      box-shadow:0 0 0 4px rgba(255,122,24,.14);
+    }
+    .today-badge .date{
+      color:rgba(241,239,233,.86);
       font-weight:900;
     }
-    .songchip .note{
-      width:22px;height:22px;
-      display:flex;align-items:center;justify-content:center;
-      border-radius:8px;
-      background:rgba(255,181,92,.18);
-      border:1px solid rgba(255,181,92,.25);
-      color:var(--accent);
+
+    .timeline-row{
+      display:flex;
+      gap:12px;
+      overflow:auto;
+      padding-bottom:6px;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
     }
-    .songmeta{
-      color:var(--muted2);
-      font-size:12px;
-      font-weight:800;
+    .titem{ flex:0 0 auto; scroll-snap-align:start; text-decoration:none; color:inherit; }
+    .tpill{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--pillLine);
+      background:var(--pillBg);
+      white-space:nowrap;
+      transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+    }
+    .tpill:hover{ border-color: var(--todayLine); transform: translateY(-1px); }
+    .tdot{
+      width:10px; height:10px; border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 4px rgba(255,181,92,.12);
+      flex:0 0 auto;
+    }
+    .tdate{ font-weight:900; font-size:12px; color:var(--accent); }
+    .tlabel{ font-size:12px; color:var(--muted); font-weight:900; }
+
+    .tpill.today{
+      border-color: var(--todayLine);
+      box-shadow: 0 0 0 1px rgba(255,181,92,.10), 0 10px 26px rgba(0,0,0,.35);
+    }
+    .tpill.today .tdot{ box-shadow: 0 0 0 5px rgba(255,181,92,.16); }
+
+    /* ===== Cards ===== */
+    .card{
+      background:linear-gradient(180deg, rgba(32,32,34,.92) 0%, rgba(27,27,28,.92) 100%);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:18px 18px 22px;
+      margin-bottom:18px;
+      box-shadow: var(--shadow);
+      scroll-margin-top:18px;
+      backdrop-filter: blur(8px);
+      position:relative;
+      overflow:hidden;
     }
 
-    /* player */
+    .card.today{
+      border-color: var(--todayLine);
+      box-shadow: 0 18px 46px rgba(0,0,0,.50);
+    }
+    .card.today::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(1100px 260px at 10% 0%, var(--todayGlow), transparent 60%),
+        radial-gradient(900px 260px at 95% 40%, rgba(255,122,24,.12), transparent 62%);
+      pointer-events:none;
+      z-index:0;
+    }
+    .card > *{ position:relative; z-index:1; }
+
+    .meta{ color:var(--accent); font-weight:900; font-size:14px; margin-bottom:6px; }
+    .theme-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin:4px 0 6px;
+      flex-wrap:wrap;
+    }
+    .theme{
+      font-size:20px;
+      margin:0;
+      font-family:'HannaPro',"SUIT",sans-serif;
+      color:var(--ink);
+    }
+
+    /* ✅ card tag pill */
+    .vibe{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,181,92,.18);
+      background: rgba(18,18,18,.45);
+      color: rgba(241,239,233,.86);
+      font-size:12px;
+      font-weight:900;
+    }
+    .vibe .icon{ color: var(--accent); }
+
+    .scripture,.songline{ font-size:14px; color:var(--muted); }
+
+    /* ===== Player ===== */
     .player{
       margin-top:12px;
       padding:12px;
-      border-radius:14px;
       border:1px solid var(--line);
+      border-radius:14px;
       background:
-        radial-gradient(800px 260px at 10% 0%, var(--playerBgA), transparent 60%),
-        radial-gradient(700px 260px at 95% 40%, var(--playerBgB), transparent 60%),
-        rgba(18,18,18,.6);
+        radial-gradient(1100px 260px at 10% 0%, var(--playerBgA), transparent 60%),
+        radial-gradient(900px 260px at 95% 40%, var(--playerBgB), transparent 60%),
+        linear-gradient(180deg, var(--playerSurface) 0%, rgba(20,20,20,.55) 100%);
+      overflow:hidden;
     }
     .player-head{
-      display:flex;justify-content:space-between;align-items:center;
-      margin-bottom:8px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      margin-bottom:10px;
+      flex-wrap:wrap;
     }
+    .player-title{ font-size:13px; color:var(--muted2); font-weight:900; }
     .link{
-      font-size:12px;font-weight:900;
+      font-size:12px; font-weight:900;
       color:var(--accent);
       background:var(--soft);
-      padding:6px 10px;border-radius:999px;
+      padding:6px 10px;
+      border-radius:999px;
       text-decoration:none;
       border:1px solid rgba(255,181,92,.22);
+      white-space:nowrap;
     }
-    iframe{width:100%;height:110px;border:0;border-radius:12px}
+    .link:hover{ filter:brightness(1.06); }
+
+    .embed{
+      border-radius:12px;
+      overflow:hidden;
+      background:var(--embedBg);
+      border:1px solid var(--embedLine);
+      box-shadow: var(--embedShadow);
+    }
+    .embed iframe{
+      width:100%;
+      height:120px;
+      border:0;
+      display:block;
+    }
 
     .one-liner{
       margin-top:12px;
+      font-size:15px;
       white-space:pre-line;
-      color:rgba(241,239,233,.95);
+      color: rgba(241,239,233,.92);
     }
 
-    @media(max-width:480px){
-      iframe{height:90px}
+    /* ===== Tabs ===== */
+    .tabs{ margin-top:8px; }
+    .tabs input[type="radio"]{ position:absolute; opacity:0; pointer-events:none; }
+    .tabbar{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
+    .tab{
+      cursor:pointer;
+      font-size:12px;
+      font-weight:950;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(18,18,18,.45);
+      color:var(--accent);
+      user-select:none;
+    }
+    #ps42_1:checked ~ .tabbar label[for="ps42_1"],
+    #ps42_2:checked ~ .tabbar label[for="ps42_2"]{
+      background:var(--soft);
+      border-color: var(--todayLine);
+    }
+    .tabpanels .panel{ display:none; }
+    #ps42_1:checked ~ .tabpanels #panel_ps42_1{ display:block; }
+    #ps42_2:checked ~ .tabpanels #panel_ps42_2{ display:block; }
+
+    /* Lyrics accordion (2/26 only) */
+    details.lyrics{
+      margin-top:12px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:rgba(18,18,18,.45);
+      overflow:hidden;
+    }
+    details.lyrics summary{
+      cursor:pointer;
+      padding:12px 12px;
+      list-style:none;
+      user-select:none;
+      color:var(--accent);
+      font-family:'HannaPro',"SUIT",sans-serif;
+      background:linear-gradient(180deg, rgba(32,32,34,.65) 0%, rgba(18,18,18,.45) 100%);
+    }
+    details.lyrics summary::-webkit-details-marker{ display:none; }
+    .lyrics-body{
+      padding:12px 12px 14px;
+      color: rgba(241,239,233,.92);
+      font-size:14px;
+      line-height:1.75;
+      white-space:pre-wrap;
+      border-top:1px solid var(--line);
+    }
+
+    footer{
+      margin-top:48px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    @media (max-width:480px){
+      .wrap{ padding:22px 14px 70px; }
+      h1{ font-size:26px; }
+      .tpill{ padding:9px 10px; }
+      .tlabel{ display:none; }
+
+      .player{ padding:10px; }
+      .player-head{ margin-bottom:8px; }
+      .player-title{ font-size:12px; }
+      .link{ padding:5px 9px; font-size:11px; }
+
+      .embed iframe{ height:92px; }
     }
   </style>
 </head>
 
 <body>
-<div class="wrap">
-  <h1>Jay's Lent Devotional</h1>
-  <div class="sub">멈추고, 하나님께 머무는 사순절</div>
-
-  <!-- 예시 카드 (2/21) -->
-  <section class="card">
-    <div class="meta">🗓️ 2월 21일 (토)</div>
-    <div class="theme-row">
-      <h2 class="theme">Remembering to Forget</h2>
-      <span class="vibe"><span class="icon">🌿</span> 기억 · 회복</span>
-    </div>
-    <div class="scripture">📖 시편 42:1–8</div>
-
-    <div class="songline">
-      <span class="songchip"><span class="note">♪</span><span>너는 너의 하나님을 바라라</span></span>
-      <span class="songchip"><span class="note">♪</span><span>목마른 사슴이</span></span>
-      <span class="songmeta">탭을 눌러 전환</span>
-    </div>
-
-    <div class="player">
-      <div class="player-head">
-        <div>🎧 듣기</div>
-        <a class="link" href="#" target="_blank">Drive에서 열기</a>
+  <div class="wrap">
+    <header>
+      <h1>Jay's Lent Devotional <span class="badge">Link Only</span></h1>
+      <div class="sub">
+        멈추고, 하나님께 머무는 사순절<br/>
+        묵상 기록과 직접 녹음한 찬양을 함께 나눕니다.
       </div>
-      <iframe src=""></iframe>
-    </div>
+    </header>
 
-    <p class="one-liner">
-잊어야 할 것들을 내려놓고
-다시 하나님을 기억하는 연습
-    </p>
-  </section>
+    <!-- Timeline -->
+    <section class="timeline" aria-label="Lent timeline">
+      <div class="timeline-top">
+        <div class="timeline-title">📍 날짜별 바로가기</div>
+        <div class="today-badge" id="todayBadge" aria-label="오늘 날짜">
+          <span class="spark" aria-hidden="true"></span>
+          TODAY <span class="date" id="todayText">--/--</span>
+        </div>
+      </div>
 
-</div>
+      <div class="timeline-row" id="timelineRow">
+        <a class="titem" href="#d0219" data-date="02-19"><div class="tpill"><span class="tdot"></span><span class="tdate">2/19</span><span class="tlabel">Lavish Love</span></div></a>
+        <a class="titem" href="#d0220" data-date="02-20"><div class="tpill"><span class="tdot"></span><span class="tdate">2/20</span><span class="tlabel">Living for Jesus</span></div></a>
+        <a class="titem" href="#d0221" data-date="02-21"><div class="tpill"><span class="tdot"></span><span class="tdate">2/21</span><span class="tlabel">Psalm 42</span></div></a>
+        <a class="titem" href="#d0222" data-date="02-22"><div class="tpill"><span class="tdot"></span><span class="tdate">2/22</span><span class="tlabel">Schooled in Love</span></div></a>
+        <a class="titem" href="#d0223" data-date="02-23"><div class="tpill"><span class="tdot"></span><span class="tdate">2/23</span><span class="tlabel">Humble Leadership</span></div></a>
+        <a class="titem" href="#d0224" data-date="02-24"><div class="tpill"><span class="tdot"></span><span class="tdate">2/24</span><span class="tlabel">Missing the Divine</span></div></a>
+        <a class="titem" href="#d0225" data-date="02-25"><div class="tpill"><span class="tdot"></span><span class="tdate">2/25</span><span class="tlabel">Exodus 20</span></div></a>
+        <a class="titem" href="#d0226" data-date="02-26"><div class="tpill"><span class="tdot"></span><span class="tdate">2/26</span><span class="tlabel">Rainbow Answer</span></div></a>
+        <a class="titem" href="#d0227" data-date="02-27"><div class="tpill"><span class="tdot"></span><span class="tdate">2/27</span><span class="tlabel">Prayer Walk</span></div></a>
+        <a class="titem" href="#d0228" data-date="02-28"><div class="tpill"><span class="tdot"></span><span class="tdate">2/28</span><span class="tlabel">Faith of Friends</span></div></a>
+      </div>
+    </section>
+
+    <!-- 2/19 -->
+    <section class="card" id="d0219" data-date="02-19">
+      <div class="meta">🗓️ 2월 19일 (목)</div>
+      <div class="theme-row">
+        <h2 class="theme">Lavish Love</h2>
+        <span class="vibe"><span class="icon">🤲</span> 사랑 · 베풂</span>
+      </div>
+      <div class="scripture">📖 레위기 25:35–43</div>
+      <div class="songline">🎵 Reckless Love</div>
+      <div class="player">
+        <div class="player-head">
+          <div class="player-title">🎧 듣기</div>
+          <a class="link" href="https://drive.google.com/file/d/19mR4h9sRhYgCqeY4J_ZZPuk7VgvwxB4M/view" target="_blank" rel="noopener">Drive에서 열기</a>
+        </div>
+        <div class="embed"><iframe src="https://drive.google.com/file/d/19mR4h9sRhYgCqeY4J_ZZPuk7VgvwxB4M/preview" allow="autoplay" loading="lazy"></iframe></div>
+      </div>
+      <p class="one-liner">조건 없이 베풀어지는 하나님의 사랑 앞에
+계산하지 않는 마음으로 서는 하루</p>
+    </section>
+
+    <!-- 2/20 -->
+    <section class="card" id="d0220" data-date="02-20">
+      <div class="meta">🗓️ 2월 20일 (금)</div>
+      <div class="theme-row">
+        <h2 class="theme">Living for Jesus</h2>
+        <span class="vibe"><span class="icon">🧭</span> 삶 · 방향</span>
+      </div>
+      <div class="scripture">📖 데살로니가전서 5:12–23</div>
+      <div class="songline">🎵 한나의 노래</div>
+      <div class="player">
+        <div class="player-head">
+          <div class="player-title">🎧 듣기</div>
+          <a class="link" href="https://drive.google.com/file/d/1FNmHRRbzaYHS1puO7N72O71M8lVrmbsQ/view" target="_blank" rel="noopener">Drive에서 열기</a>
+        </div>
+        <div class="embed"><iframe src="https://drive.google.com/file/d/1FNmHRRbzaYHS1puO7N72O71M8lVrmbsQ/preview" allow="autoplay" loading="lazy"></iframe></div>
+      </div>
+      <p class="one-liner">삶 전체가 예배가 되도록
+하루의 태도와 선택을 주님께 맡기는 묵상</p>
+    </section>
+
+    <!-- 2/21 -->
+    <section class="card" id="d0221" data-date="02-21">
+      <div class="meta">🗓️ 2월 21일 (토)</div>
+      <div class="theme-row">
+        <h2 class="theme">Remembering to Forget</h2>
+        <span class="vibe"><span class="icon">🌿</span> 기억 · 회복</span>
+      </div>
+      <div class="scripture">📖 시편 42:1–8</div>
+      <div class="songline">🎵 (탭으로 선택) 너는 너의 하나님을 바라라 · 목마른 사슴이</div>
+
+      <div class="player">
+        <div class="player-head">
+          <div class="player-title">🎧 듣기 (2곡)</div>
+          <span style="font-size:12px;color:var(--muted2);font-weight:900;">탭을 눌러 전환</span>
+        </div>
+
+        <div class="tabs">
+          <input type="radio" name="ps42" id="ps42_1" checked>
+          <input type="radio" name="ps42" id="ps42_2">
+
+          <div class="tabbar" role="tablist" aria-label="Psalm 42 songs">
+            <label class="tab" for="ps42_1" role="tab">너는 너의 하나님을 바라라</label>
+            <label class="tab" for="ps42_2" role="tab">목마른 사슴이</label>
+          </div>
+
+          <div class="tabpanels">
+            <div class="panel" id="panel_ps42_1" role="tabpanel">
+              <div class="player-head" style="margin:0 0 10px;">
+                <div class="player-title">🎵 너는 너의 하나님을 바라라</div>
+                <a class="link" href="https://drive.google.com/file/d/1d7heyWkA_2-rwP9czYt1AbdqATa-U91s/view" target="_blank" rel="noopener">Drive에서 열기</a>
+              </div>
+              <div class="embed"><iframe src="https://drive.google.com/file/d/1d7heyWkA_2-rwP9czYt1AbdqATa-U91s/preview" allow="autoplay" loading="lazy"></iframe></div>
+            </div>
+
+            <div class="panel" id="panel_ps42_2" role="tabpanel">
+              <div class="player-head" style="margin:0 0 10px;">
+                <div class="player-title">🎵 목마른 사슴이</div>
+                <a class="link" href="https://drive.google.com/file/d/1bqZgjst5zJsmVT6pZFK5-dT3t7cmctSe/view" target="_blank" rel="noopener">Drive에서 열기</a>
+              </div>
+              <div class="embed"><iframe src="https://drive.google.com/file/d/1bqZgjst5zJsmVT6pZFK5-dT3t7cmctSe/preview" allow="autoplay" loading="lazy"></iframe></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="one-liner">잊어야 할 것들을 내려놓고
+다시 하나님을 기억하는 연습</p>
+    </section>
+
+    <!-- 2/22 -->
+    <section class="card" id="d0222" data-date="02-22">
+      <div class="meta">🗓️ 2월 22일 (주일)</div>
+      <div class="theme-row">
+        <h2 class="theme">Schooled in Love</h2>
+        <span class="vibe"><span class="icon">❤️</span> 사랑 · 배움</span>
+      </div>
+      <div class="scripture">📖 요한일서 4:16–21</div>
+      <div class="songline">🎵 사랑은 여기 있으니</div>
+      <div class="player">
+        <div class="player-head">
+          <div class="player-title">🎧 듣기</div>
+          <a class="link" href="https://drive.google.com/file/d/1DX6hIalzoAX_13R5E9eFDaAh0EMnkd1S/view" target="_blank" rel="noopener">Drive에서 열기</a>
+        </div>
+        <div class="embed"><iframe src="https://drive.google.com/file/d/1DX6hIalzoAX_13R5E9eFDaAh0EMnkd1S/preview" allow="autoplay" loading="lazy"></iframe></div>
+      </div>
+      <p class="one-liner">사랑을 배워가는
+하나님께 먼저 사랑받은 존재로 서기</p>
+    </section>
+
+    <!-- 2/23 -->
+    <section class="card" id="d0223" data-date="02-23">
+      <div class="meta">🗓️ 2월 23일 (월)</div>
+      <div class="theme-row">
+        <h2 class="theme">Humble Leadership</h2>
+        <span class="vibe"><span class="icon">👑</span> 겸손 · 왕되심</span>
+      </div>
+      <div class="scripture">📖 요한복음 1:19–28</div>
+      <div class="songline">🎵 내 마음의 한자리 + 주님만이 왕이십니다</div>
+      <div class="player">
+        <div class="player-head">
+          <div class="player-title">🎧 듣기</div>
+          <a class="link" href="https://drive.google.com/file/d/1AAtkVltNvGm_EsuwccRuMeSJxNu9AP3i/view" target="_blank" rel="noopener">Drive에서 열기</a>
+        </div>
+        <div class="embed"><iframe src="https://drive.google.com/file/d/1AAtkVltNvGm_EsuwccRuMeSJxNu9AP3i/preview" allow="autoplay" loading="lazy"></iframe></div>
+      </div>
+      <p class="one-liner">드러남이 아닌 물러섬으로
+주님을 가리키는 리더십</p>
+    </section>
+
+    <!-- 2/24 -->
+    <section class="card" id="d0224" data-date="02-24">
+      <div class="meta">🗓️ 2월 24일 (화)</div>
+      <div class="theme-row">
+        <h2 class="theme">Missing the Divine</h2>
+        <span class="vibe"><span class="icon">🌊</span> 갈망 · 동행</span>
+      </div>
+      <div class="scripture">📖 이사야 53:1–6</div>
+      <div class="songline">🎵 주님과 호숫가를 거닐다</div>
+      <div class="player">
+        <div class="player-head">
+          <div class="player-title">🎧 듣기</div>
+          <a class="link" href="https://drive.google.com/file/d/1jP_u2klCiMLQ2WlojhnhA-j2oIx4AuAv/view" target="_blank" rel="noopener">Drive에서 열기</a>
+        </div>
+        <div class="embed"><iframe src="https://drive.google.com/file/d/1jP_u2klCiMLQ2WlojhnhA-j2oIx4AuAv/preview" allow="autoplay" loading="lazy"></iframe></div>
+      </div>
+      <p class="one-liner">알아보지 못했던 하나님,
+그러나 끝까지 우리를 향해 걸어오신 분</p>
+    </section>
+
+    <!-- 2/25 -->
+    <section class="card" id="d0225" data-date="02-25">
+      <div class="meta">🗓️ 2월 25일 (수)</div>
+      <div class="theme-row">
+        <h2 class="theme">Abusing God’s Name</h2>
+        <span class="vibe"><span class="icon">🏷️</span> 이름 · 거룩</span>
+      </div>
+      <div class="scripture">📖 출애굽기 20:1–4, 7–8, 12–17</div>
+      <div class="songline">🎵 어둔 날 다 지나고</div>
+      <div class="player">
+        <div class="player-head">
+          <div class="player-title">🎧 듣기</div>
+          <a class="link" href="https://drive.google.com/file/d/1ylmoYswpcSDhAsPDAf3aZExY1VOn1Y3l/view" target="_blank" rel="noopener">Drive에서 열기</a>
+        </div>
+        <div class="embed"><iframe src="https://drive.google.com/file/d/1ylmoYswpcSDhAsPDAf3aZExY1VOn1Y3l/preview" allow="autoplay" loading="lazy"></iframe></div>
+      </div>
+      <p class="one-liner">하나님의 이름을 부르며
+그 이름의 무게를 다시 배우는 시간</p>
+    </section>
+
+    <!-- 2/26 -->
+    <section class="card" id="d0226" data-date="02-26">
+      <div class="meta">🗓️ 2월 26일 (목)</div>
+      <div class="theme-row">
+        <h2 class="theme">God’s Rainbow Answer</h2>
+        <span class="vibe"><span class="icon">🌈</span> 약속 · 기억</span>
+      </div>
+      <div class="scripture">📖 창세기 9:12–16</div>
+      <div class="songline">🎵 Yet Not I But Through Christ In Me (편곡)</div>
+
+      <div class="player">
+        <div class="player-head">
+          <div class="player-title">🎧 듣기</div>
+          <a class="link" href="https://drive.google.com/file/d/1MBC8MczAvlbQRsLOdh3OvMibN-gDF147/view" target="_blank" rel="noopener">Drive에서 열기</a>
+        </div>
+        <div class="embed"><iframe src="https://drive.google.com/file/d/1MBC8MczAvlbQRsLOdh3OvMibN-gDF147/preview" allow="autoplay" loading="lazy"></iframe></div>
+      </div>
+
+      <details class="lyrics">
+        <summary>가사 보기 (1–4절)</summary>
+        <div class="lyrics-body">1절
+
+주의 은혜 나를 구원하시니
+더 큰 선물 난 바랄 것 없네
+내 기쁨과 의와 자유 되시며
+변함없는 사랑 되시는 주
+
+나의 소망 예수 안에 있으니
+내 삶은 주님께 속했네
+말로 다 할 수 없네
+내 영혼 찬양해
+나 아닌 예수로 인해
+
+
+2절
+
+흑암에도 내 영혼 평안함은
+주 예수 나와 함께하시니
+내 연약함 나의 자랑되었네
+주 능력이 나를 붙드시네
+
+나의 방패 나의 목자 되시니
+골짜기도 나 두렵지 않네
+어둠을 이기셨네
+내 영혼 찬양해
+나 아닌 예수로 인해
+
+
+3절
+
+예수의 피 내 죄 사하셨으니
+죽음도 나 두렵지 않네
+나를 위해 십자가에 달리신
+그 사랑, 무덤 이기셨네
+
+나의 공의 나의 구원되시는
+예수 이름 붙들고 나가네
+죄의 사슬 풀렸네
+내 영혼 찬양해
+나 아닌 예수로 인해
+
+
+4절
+
+온 힘 다해 주 따르기 원하네
+인도한다 약속하신 주님
+그의 능력 날 새롭게 하시니
+보좌 앞에 기쁨으로 서리
+
+내 참 소망 세상 소망 되시는
+주 예수께 영광 돌아가네
+믿음의 경주 끝에
+내 영혼 찬양해
+나 아닌 예수로 인해</div>
+      </details>
+
+      <p class="one-liner">심판 이후에도 남겨진 약속,
+기억을 포기하지 않으시는 하나님의 응답</p>
+    </section>
+
+    <!-- 2/27 -->
+    <section class="card" id="d0227" data-date="02-27">
+      <div class="meta">🗓️ 2월 27일 (금)</div>
+      <div class="theme-row">
+        <h2 class="theme">Prayer Walk</h2>
+        <span class="vibe"><span class="icon">🙏</span> 기도 · 걸음</span>
+      </div>
+      <div class="scripture">📖 열왕기하 4:31–35</div>
+      <div class="songline">🎵 하나님의 세계 (Lent)</div>
+      <div class="player">
+        <div class="player-head">
+          <div class="player-title">🎧 듣기</div>
+          <a class="link" href="https://drive.google.com/file/d/18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ/view" target="_blank" rel="noopener">Drive에서 열기</a>
+        </div>
+        <div class="embed"><iframe src="https://drive.google.com/file/d/18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ/preview" allow="autoplay" loading="lazy"></iframe></div>
+      </div>
+      <p class="one-liner">주님이 이미 임하신 세계를, 우리는 기도로 걷는다.</p>
+    </section>
+
+    <!-- 2/28 -->
+    <section class="card" id="d0228" data-date="02-28">
+      <div class="meta">🗓️ 2월 28일 (토)</div>
+      <div class="theme-row">
+        <h2 class="theme">Faith of Friends</h2>
+        <span class="vibe"><span class="icon">🤝</span> 친구 · 믿음</span>
+      </div>
+      <div class="scripture">📖 마가복음 2:1–5</div>
+      <div class="songline">🎵 혼자 걷지 않을 거예요 (Lent)</div>
+      <div class="player">
+        <div class="player-head">
+          <div class="player-title">🎧 듣기</div>
+          <a class="link" href="https://drive.google.com/file/d/17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_/view" target="_blank" rel="noopener">Drive에서 열기</a>
+        </div>
+        <div class="embed"><iframe src="https://drive.google.com/file/d/17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_/preview" allow="autoplay" loading="lazy"></iframe></div>
+      </div>
+      <p class="one-liner">우리는 혼자가 아니라, 서로의 믿음에 들려 주님 앞으로 간다.</p>
+    </section>
+
+    <footer>
+      이 페이지는 개인 묵상 기록을 위한 공간이며,<br/>
+      링크를 받은 소수와 조용히 나누기 위해 만들어졌습니다.<br/><br/>
+      © Jay · Lent 2026
+    </footer>
+  </div>
+
+  <script>
+    function centerTimelineItem(titem){
+      const row = document.getElementById('timelineRow');
+      if (!row || !titem) return;
+      const left = titem.offsetLeft;
+      const width = titem.offsetWidth;
+      const targetScroll = left - (row.clientWidth / 2) + (width / 2);
+      row.scrollTo({ left: Math.max(0, targetScroll), behavior: 'smooth' });
+    }
+
+    // center pill on click/tap
+    (function bindTimelineClicks(){
+      const row = document.getElementById('timelineRow');
+      if (!row) return;
+      row.querySelectorAll('.titem').forEach(a => {
+        a.addEventListener('click', () => centerTimelineItem(a));
+      });
+    })();
+
+    // today: badge + pill highlight + center + card scroll
+    (function highlightToday(){
+      const now = new Date();
+      const mm = String(now.getMonth() + 1).padStart(2, '0');
+      const dd = String(now.getDate()).padStart(2, '0');
+      const key = `${mm}-${dd}`;
+
+      const todayText = document.getElementById('todayText');
+      if (todayText) todayText.textContent = `${Number(mm)}/${Number(dd)}`;
+
+      const target = document.querySelector(`.card[data-date="${key}"]`);
+      if(!target) return;
+
+      const titem = document.querySelector(`.titem[data-date="${key}"]`);
+      if (titem) {
+        document.querySelectorAll('.tpill.today').forEach(p => p.classList.remove('today'));
+        const pill = titem.querySelector('.tpill');
+        if (pill) pill.classList.add('today');
+        setTimeout(() => centerTimelineItem(titem), 80);
+      }
+
+      document.querySelectorAll('.card.today').forEach(el => el.classList.remove('today'));
+      target.classList.add('today');
+
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 250);
+    })();
+  </script>
 </body>
 </html>
