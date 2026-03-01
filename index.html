@@ -5,13 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jay's Lent Devotional</title>
 
-  <!-- SUIT for body text -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* Baemin-like title font (HannaPro) */
     @font-face {
       font-family: 'HannaPro';
       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
@@ -90,7 +88,6 @@
       box-shadow: var(--shadow);
       backdrop-filter: blur(8px);
     }
-
     .timeline-top{
       display:flex;
       align-items:center;
@@ -105,7 +102,6 @@
       font-family:'HannaPro',"SUIT",sans-serif;
       letter-spacing:.2px;
     }
-
     .today-badge{
       display:inline-flex;
       align-items:center;
@@ -213,7 +209,6 @@
       font-family:'HannaPro',"SUIT",sans-serif;
       color:var(--ink);
     }
-
     .vibe{
       display:inline-flex;
       align-items:center;
@@ -227,10 +222,8 @@
       font-weight:900;
     }
     .vibe .icon{ color: var(--accent); }
-
     .scripture{ font-size:14px; color:var(--muted); }
 
-    /* Song chips */
     .songs{
       margin-top:10px;
       display:flex;
@@ -263,7 +256,6 @@
     }
     .songmeta{ font-size:12px; color:var(--muted2); font-weight:900; }
 
-    /* Player container */
     .player{
       margin-top:12px;
       padding:12px;
@@ -284,6 +276,7 @@
       flex-wrap:wrap;
     }
     .player-title{ font-size:13px; color:var(--muted2); font-weight:900; }
+
     .link{
       font-size:12px; font-weight:900;
       color:var(--accent);
@@ -303,7 +296,6 @@
       color: rgba(241,239,233,.92);
     }
 
-    /* Tabs */
     .tabs{ margin-top:8px; }
     .tabs input[type="radio"]{ position:absolute; opacity:0; pointer-events:none; }
     .tabbar{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
@@ -327,7 +319,6 @@
     #ps42_1:checked ~ .tabpanels #panel_ps42_1{ display:block; }
     #ps42_2:checked ~ .tabpanels #panel_ps42_2{ display:block; }
 
-    /* Lyrics accordion */
     details.lyrics{
       margin-top:12px;
       border:1px solid var(--line);
@@ -369,14 +360,11 @@
       .tlabel{ display:none; }
     }
 
-    /* =========================================================
-       Apple Music-ish skin (drop-in override for .mplayer)
-       + mobile Now Playing layout + SVG icons
-       ========================================================= */
+    /* ===== Player row (clean, one-line on mobile) ===== */
     .mplayer{
       display:flex;
       align-items:center;
-      gap:14px;
+      gap:12px;
       padding:14px;
       border:1px solid rgba(255,255,255,.10);
       border-radius:16px;
@@ -384,16 +372,11 @@
         radial-gradient(900px 220px at 12% 10%, rgba(255,181,92,.14), transparent 60%),
         linear-gradient(180deg, rgba(28,28,30,.78) 0%, rgba(18,18,18,.55) 100%);
       backdrop-filter: blur(10px);
-      overflow:hidden;
     }
 
     .mp-btn{
-      width:46px;
-      height:46px;
+      width:46px; height:46px;
       border-radius:999px;
-      font-size:16px;
-      line-height:46px;
-      padding:0;
       border:1px solid rgba(255,181,92,.28);
       background: rgba(255,181,92,.14);
       color:var(--accent);
@@ -405,11 +388,10 @@
     .mp-seek{
       flex:1;
       height:4px;
-      padding:0;
       border-radius:999px;
       background: rgba(255,255,255,.12);
       accent-color: var(--accent);
-      min-width:140px;
+      min-width:120px;
     }
 
     .mp-time{
@@ -424,25 +406,20 @@
       display:flex;
       align-items:center;
       gap:10px;
-      margin-left:2px;
       flex:0 0 auto;
     }
-
     .mp-volbtn{
-      width:38px;
-      height:38px;
+      width:38px; height:38px;
       border-radius:999px;
       border:1px solid rgba(255,181,92,.22);
       background:rgba(255,181,92,.10);
       color:var(--accent);
       cursor:pointer;
-      flex:0 0 auto;
       display:inline-flex;
       align-items:center;
       justify-content:center;
     }
     .mp-volbtn svg{ color: var(--accent); }
-
     .mp-vol{
       width:92px;
       height:4px;
@@ -451,13 +428,11 @@
       accent-color: var(--accent);
     }
 
-    /* nicer range thumbs */
     .mp-seek::-webkit-slider-thumb,
     .mp-vol::-webkit-slider-thumb{
       -webkit-appearance:none;
       appearance:none;
-      width:14px;
-      height:14px;
+      width:14px; height:14px;
       border-radius:999px;
       background: rgba(241,239,233,.92);
       border:2px solid rgba(255,181,92,.55);
@@ -465,62 +440,24 @@
     }
     .mp-seek::-moz-range-thumb,
     .mp-vol::-moz-range-thumb{
-      width:14px;
-      height:14px;
+      width:14px; height:14px;
       border-radius:999px;
       background: rgba(241,239,233,.92);
       border:2px solid rgba(255,181,92,.55);
       box-shadow: 0 6px 16px rgba(0,0,0,.35);
     }
 
-    /* ===== Mobile Now Playing layout (2~3 lines) ===== */
-    .mp-times{ display:none; }
+    /* iOS(A안): 볼륨 UI 숨김 + 한 줄 유지 */
+    body.ios .mp-volwrap{ display:none !important; }
+    body.ios .mp-seek{ min-width:0; }
+    body.ios .mp-btn{ width:44px; height:44px; }
+    body.ios .mp-time{ font-variant-numeric: tabular-nums; }
 
+    /* 모바일에서 진짜 "한줄"로 더 타이트하게 */
     @media (max-width:520px){
-      .mplayer{
-        flex-wrap:wrap;
-        gap:12px;
-        padding:14px;
-      }
-
-      .mp-btn{ order:1; }
-
-      /* desktop time hides on mobile (prevents clipping) */
-      .mp-time{ display:none; }
-
-      /* seek bar full width */
-      .mp-seek{
-        order:2;
-        flex:0 0 100%;
-        min-width:0;
-      }
-
-      /* time row (left=current / right=remaining) */
-      .mp-times{
-        display:flex;
-        order:3;
-        flex:0 0 100%;
-        justify-content:space-between;
-        font-size:12px;
-        font-weight:900;
-        color: rgba(241,239,233,.62);
-        padding:0 2px;
-      }
-
-      /* volume row full width */
-      .mp-volwrap{
-        order:4;
-        flex:0 0 100%;
-        justify-content:space-between;
-        gap:10px;
-      }
-
-      .mp-vol{
-        display:block;
-        flex:1;
-        width:auto;
-        min-width:120px;
-      }
+      .mplayer{ padding:12px; gap:10px; }
+      .mp-btn{ width:44px; height:44px; }
+      .mp-time{ font-size:12px; }
     }
   </style>
 </head>
@@ -535,7 +472,6 @@
       </div>
     </header>
 
-    <!-- Timeline -->
     <section class="timeline" aria-label="Lent timeline">
       <div class="timeline-top">
         <div class="timeline-title">📍 날짜별 바로가기</div>
@@ -560,6 +496,8 @@
       </div>
     </section>
 
+    <!-- ====== Cards (content same as your latest) ====== -->
+    <!-- NOTE: 아래 카드 섹션들은 너가 올린 최신과 동일. (중간 내용은 그대로 유지) -->
     <!-- 2/19 -->
     <section class="card v1" id="d0219" data-date="02-19">
       <div class="meta">🗓️ 2월 19일 (목)</div>
@@ -569,7 +507,6 @@
       </div>
       <div class="scripture">📖 레위기 25:35–43</div>
       <div class="songs"><span class="songchip"><span class="note">♪</span>Reckless Love</span></div>
-
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
@@ -582,7 +519,6 @@
           <audio preload="metadata"></audio>
         </div>
       </div>
-
       <p class="one-liner">조건 없이 베풀어지는 하나님의 사랑 앞에
 계산하지 않는 마음으로 서는 하루</p>
     </section>
@@ -596,7 +532,6 @@
       </div>
       <div class="scripture">📖 데살로니가전서 5:12–23</div>
       <div class="songs"><span class="songchip"><span class="note">♪</span>한나의 노래</span></div>
-
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
@@ -609,7 +544,6 @@
           <audio preload="metadata"></audio>
         </div>
       </div>
-
       <p class="one-liner">삶 전체가 예배가 되도록
 하루의 태도와 선택을 주님께 맡기는 묵상</p>
     </section>
@@ -627,29 +561,24 @@
         <span class="songchip"><span class="note">♪</span>목마른 사슴이</span>
         <span class="songmeta">탭으로 전환</span>
       </div>
-
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기 (2곡)</div>
           <span class="songmeta">탭을 눌러 곡을 바꿔요</span>
         </div>
-
         <div class="tabs">
           <input type="radio" name="ps42" id="ps42_1" checked>
           <input type="radio" name="ps42" id="ps42_2">
-
           <div class="tabbar" role="tablist" aria-label="Psalm 42 songs">
             <label class="tab" for="ps42_1" role="tab">너는 너의 하나님을 바라라</label>
             <label class="tab" for="ps42_2" role="tab">목마른 사슴이</label>
           </div>
-
           <div class="tabpanels">
             <div class="panel" id="panel_ps42_1" role="tabpanel">
               <div class="player-head" style="margin:0 0 10px;">
                 <div class="player-title">🎵 너는 너의 하나님을 바라라</div>
                 <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-21-a.mp3" target="_blank" rel="noopener">파일 열기</a>
               </div>
-
               <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-21-a.mp3">
                 <button class="mp-btn" type="button" aria-label="재생">▶</button>
                 <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -663,7 +592,6 @@
                 <div class="player-title">🎵 목마른 사슴이</div>
                 <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-21-b.mp3" target="_blank" rel="noopener">파일 열기</a>
               </div>
-
               <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-21-b.mp3">
                 <button class="mp-btn" type="button" aria-label="재생">▶</button>
                 <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -674,7 +602,6 @@
           </div>
         </div>
       </div>
-
       <p class="one-liner">잊어야 할 것들을 내려놓고
 다시 하나님을 기억하는 연습</p>
     </section>
@@ -688,7 +615,6 @@
       </div>
       <div class="scripture">📖 요한일서 4:16–21</div>
       <div class="songs"><span class="songchip"><span class="note">♪</span>사랑은 여기 있으니</span></div>
-
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
@@ -701,7 +627,6 @@
           <audio preload="metadata"></audio>
         </div>
       </div>
-
       <p class="one-liner">사랑을 배워가는
 하나님께 먼저 사랑받은 존재로 서기</p>
     </section>
@@ -717,7 +642,6 @@
       <div class="songs">
         <span class="songchip"><span class="note">♪</span>내 마음의 한자리 + 주님만이 왕이십니다</span>
       </div>
-
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
@@ -730,7 +654,6 @@
           <audio preload="metadata"></audio>
         </div>
       </div>
-
       <p class="one-liner">드러남이 아닌 물러섬으로
 주님을 가리키는 리더십</p>
     </section>
@@ -744,7 +667,6 @@
       </div>
       <div class="scripture">📖 이사야 53:1–6</div>
       <div class="songs"><span class="songchip"><span class="note">♪</span>주님과 호숫가를 거닐다</span></div>
-
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
@@ -757,7 +679,6 @@
           <audio preload="metadata"></audio>
         </div>
       </div>
-
       <p class="one-liner">알아보지 못했던 하나님,
 그러나 끝까지 우리를 향해 걸어오신 분</p>
     </section>
@@ -771,7 +692,6 @@
       </div>
       <div class="scripture">📖 출애굽기 20:1–4, 7–8, 12–17</div>
       <div class="songs"><span class="songchip"><span class="note">♪</span>어둔 날 다 지나고</span></div>
-
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
@@ -784,7 +704,6 @@
           <audio preload="metadata"></audio>
         </div>
       </div>
-
       <p class="one-liner">하나님의 이름을 부르며
 그 이름의 무게를 다시 배우는 시간</p>
     </section>
@@ -883,7 +802,6 @@
       </div>
       <div class="scripture">📖 열왕기하 4:31–35</div>
       <div class="songs"><span class="songchip"><span class="note">♪</span>하나님의 세계 (Lent)</span></div>
-
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
@@ -896,7 +814,6 @@
           <audio preload="metadata"></audio>
         </div>
       </div>
-
       <p class="one-liner">주님이 이미 임하신 세계를, 우리는 기도로 걷는다.</p>
     </section>
 
@@ -909,7 +826,6 @@
       </div>
       <div class="scripture">📖 마가복음 2:1–5</div>
       <div class="songs"><span class="songchip"><span class="note">♪</span>혼자 걷지 않을 거예요 (Lent)</span></div>
-
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
@@ -922,7 +838,6 @@
           <audio preload="metadata"></audio>
         </div>
       </div>
-
       <p class="one-liner">우리는 혼자가 아니라, 서로의 믿음에 들려 주님 앞으로 간다.</p>
     </section>
 
@@ -934,11 +849,9 @@
         <span class="vibe"><span class="icon">⛰️</span> 복음 · 걸음</span>
       </div>
       <div class="scripture">📖 로마서 10:12–15</div>
-
       <div class="songs">
         <span class="songchip"><span class="note">♪</span>복음들고 산을</span>
       </div>
-
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
@@ -951,7 +864,6 @@
           <audio preload="metadata"></audio>
         </div>
       </div>
-
       <p class="one-liner">복음은 멀리 있는 이야기가 아니라,
 오늘 내 발걸음 위에서 시작되는 소식.</p>
     </section>
@@ -991,10 +903,10 @@
       const todayText = document.getElementById('todayText');
       if (todayText) todayText.textContent = `${Number(mm)}/${Number(dd)}`;
 
-      const target = document.querySelector(`.card[data-date="${key}"]`);
+      const target = document.querySelector(\`.card[data-date="\${key}"]\`);
       if(!target) return;
 
-      const titem = document.querySelector(`.titem[data-date="${key}"]`);
+      const titem = document.querySelector(\`.titem[data-date="\${key}"]\`);
       if (titem) {
         document.querySelectorAll('.tpill.today').forEach(p => p.classList.remove('today'));
         const pill = titem.querySelector('.tpill');
@@ -1010,8 +922,8 @@
       }, 250);
     })();
 
-    /* ===== Apple Music-ish Players (mobile Now Playing layout + SVG icons) ===== */
-    (function initAppleMusicishPlayers(){
+    /* ===== Minimal Player (A: iOS에서는 시스템 볼륨 사용) ===== */
+    (function initPlayers(){
       const fmt = (s)=>{
         if(!isFinite(s) || s < 0) return '0:00';
         const m = Math.floor(s/60);
@@ -1019,20 +931,12 @@
         return `${m}:${ss}`;
       };
 
-      const ICON_VOL = `
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M11 5L6.5 9H3v6h3.5L11 19V5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-          <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M18 6a8 8 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".7"/>
-        </svg>`;
-      const ICON_MUTE = `
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M11 5L6.5 9H3v6h3.5L11 19V5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-          <path d="M16 9l5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>`;
+      // iOS detect -> hide volume UI (system volume only)
+      const ua = navigator.userAgent || '';
+      const isIOS = /iP(hone|od|ad)/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      if(isIOS) document.body.classList.add('ios');
 
-      // Change "파일 열기" -> "파일다운" + download attribute
+      // Change "파일 열기" -> "파일다운" + try download
       document.querySelectorAll('a.link[href$=".mp3"]').forEach(a=>{
         a.textContent = '파일다운';
         a.setAttribute('download', '');
@@ -1058,57 +962,14 @@
 
         if(!audio || !btn || !seek || !time) return;
 
-        // Inject volume controls (once)
-        if(!p.querySelector('.mp-volwrap')){
-          const wrap = document.createElement('div');
-          wrap.className = 'mp-volwrap';
-          wrap.innerHTML = `
-            <button class="mp-volbtn" type="button" aria-label="음소거"></button>
-            <input class="mp-vol" type="range" min="0" max="100" value="85" aria-label="볼륨">
-          `;
-          time.insertAdjacentElement('beforebegin', wrap);
-        }
-
-        // Inject mobile time row (once) under seek
-        if(!p.querySelector('.mp-times')){
-          const times = document.createElement('div');
-          times.className = 'mp-times';
-          times.innerHTML = `
-            <span class="mp-tcur">0:00</span>
-            <span class="mp-trem">-0:00</span>
-          `;
-          seek.insertAdjacentElement('afterend', times);
-        }
-
-        const vbtn = p.querySelector('.mp-volbtn');
-        const vol  = p.querySelector('.mp-vol');
-        const tcur = p.querySelector('.mp-tcur');
-        const trem = p.querySelector('.mp-trem');
-
         audio.src = src;
         audio.preload = 'metadata';
 
-        const setPlayBtn = ()=>{
+        const setBtn = ()=>{
           btn.textContent = audio.paused ? '▶' : '❚❚';
           btn.setAttribute('aria-label', audio.paused ? '재생' : '일시정지');
         };
 
-        const setVolIcon = ()=>{
-          if(!vbtn) return;
-          const muted = audio.muted || audio.volume === 0;
-          vbtn.innerHTML = muted ? ICON_MUTE : ICON_VOL;
-          vbtn.setAttribute('aria-label', muted ? '음소거 해제' : '음소거');
-        };
-
-        // Init volume
-        if(vol){
-          const initV = Math.min(1, Math.max(0, (Number(vol.value)||85)/100));
-          audio.volume = initV;
-        }
-        setVolIcon();
-        setPlayBtn();
-
-        // Play / Pause
         btn.addEventListener('click', async ()=>{
           stopOthers(audio);
           if(audio.paused){
@@ -1116,29 +977,18 @@
           }else{
             audio.pause();
           }
-          setPlayBtn();
+          setBtn();
         });
 
-        // Time / Seek
         audio.addEventListener('loadedmetadata', ()=>{
-          // desktop
-          time.textContent = `0:00 / ${fmt(audio.duration)}`;
-          // mobile
-          if(tcur) tcur.textContent = '0:00';
-          if(trem) trem.textContent = `-${fmt(audio.duration)}`;
+          // 모바일에서 더 짧게 보여주도록: 0:00 · -3:28
+          time.textContent = `0:00 · -${fmt(audio.duration)}`;
         });
 
         audio.addEventListener('timeupdate', ()=>{
           seek.value = (audio.currentTime / audio.duration) * 100 || 0;
-
-          // desktop
-          time.textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration)}`;
-
-          // mobile (left current / right remaining)
-          if(tcur) tcur.textContent = fmt(audio.currentTime);
-          if(trem && isFinite(audio.duration)){
-            trem.textContent = `-${fmt(Math.max(0, audio.duration - audio.currentTime))}`;
-          }
+          const remain = isFinite(audio.duration) ? Math.max(0, audio.duration - audio.currentTime) : 0;
+          time.textContent = `${fmt(audio.currentTime)} · -${fmt(remain)}`;
         });
 
         seek.addEventListener('input', ()=>{
@@ -1149,34 +999,13 @@
 
         audio.addEventListener('ended', ()=>{
           seek.value = 0;
-          setPlayBtn();
+          setBtn();
         });
 
-        audio.addEventListener('pause', setPlayBtn);
-        audio.addEventListener('play', setPlayBtn);
+        audio.addEventListener('pause', setBtn);
+        audio.addEventListener('play', setBtn);
 
-        // Volume
-        if(vol){
-          vol.addEventListener('input', ()=>{
-            audio.muted = false;
-            audio.volume = Math.min(1, Math.max(0, vol.value/100));
-            setVolIcon();
-          });
-        }
-
-        if(vbtn){
-          vbtn.addEventListener('click', ()=>{
-            audio.muted = !audio.muted;
-            setVolIcon();
-          });
-        }
-
-        audio.addEventListener('volumechange', ()=>{
-          if(vol && !audio.muted){
-            vol.value = String(Math.round(audio.volume * 100));
-          }
-          setVolIcon();
-        });
+        setBtn();
       });
     })();
   </script>
