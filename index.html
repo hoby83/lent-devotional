@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Jay's Lent Devotional</title>
 
+  <!-- Open Graph (Kakao / Facebook / iMessage / Slack) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Jay's Lent Devotional" />
+  <meta property="og:description" content="Stop &amp; Stay for Lent — devotions and worship." />
+  <meta property="og:url" content="https://jay-vault.github.io/lent-devotional/" />
+  <meta property="og:image" content="https://jay-vault.github.io/lent-devotional/og/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter/X -->
+  <meta name="twitter:card" content="summary_large_image" />
+
   <!-- SUIT for body text -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +34,9 @@
 
     :root{
       --bg:#121212;
-      --bg2:#101010;
+      --surface:#1a1a1a;
+      --surface2:#171717;
+
       --ink:#f1efe9;
       --muted:#b9b6b0;
       --muted2:#9a9893;
@@ -31,22 +45,10 @@
       --accent2:#ff7a18;
 
       --line:rgba(255,255,255,.08);
-      --soft:rgba(255,181,92,.14);
+      --soft:rgba(255,181,92,.12);
       --shadow:0 14px 34px rgba(0,0,0,.45);
 
-      --playerBgA: rgba(255,181,92,.14);
-      --playerBgB: rgba(255,122,24,.10);
-      --playerSurface: rgba(18,18,18,.6);
-
-      --pillBg: rgba(18,18,18,.55);
-      --pillLine: rgba(255,255,255,.08);
-
-      --todayGlow: rgba(255,181,92,.26);
-      --todayLine: rgba(255,122,24,.32);
-
-      --cardA: rgba(255,181,92,.10);
-      --cardB: rgba(255,122,24,.08);
-      --cardC: rgba(255,255,255,.04);
+      --todayLine: rgba(255,122,24,.40);
     }
 
     *{ box-sizing:border-box; }
@@ -54,10 +56,7 @@
     body{
       margin:0;
       font-family:"SUIT",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
-      background:
-        radial-gradient(1100px 420px at 20% -10%, rgba(255,181,92,.16), transparent 60%),
-        radial-gradient(900px 380px at 90% 20%, rgba(255,122,24,.10), transparent 62%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      background: var(--bg); /* ✅ 완전 단색 */
       color:var(--ink);
       line-height:1.65;
     }
@@ -84,11 +83,10 @@
     .timeline{
       margin:18px 0 26px;
       padding:14px 14px;
-      background:linear-gradient(180deg, rgba(32,32,34,.92) 0%, rgba(27,27,28,.92) 100%);
+      background: var(--surface2); /* ✅ 단색 */
       border:1px solid var(--line);
       border-radius:16px;
       box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
     }
 
     .timeline-top{
@@ -113,8 +111,7 @@
       padding:6px 10px;
       border-radius:999px;
       border:1px solid rgba(255,181,92,.22);
-      background: radial-gradient(700px 120px at 10% 40%, rgba(255,181,92,.18), transparent 55%),
-                  rgba(18,18,18,.55);
+      background: rgba(18,18,18,.55); /* ✅ 단색 */
       color:var(--accent);
       font-size:12px;
       font-weight:950;
@@ -123,7 +120,7 @@
     .today-badge .spark{
       width:10px; height:10px; border-radius:50%;
       background:var(--accent2);
-      box-shadow:0 0 0 4px rgba(255,122,24,.14);
+      box-shadow:0 0 0 4px rgba(255,122,24,.12);
     }
     .today-badge .date{
       color:rgba(241,239,233,.86);
@@ -143,16 +140,16 @@
       display:flex; align-items:center; gap:10px;
       padding:10px 12px;
       border-radius:999px;
-      border:1px solid var(--pillLine);
-      background:var(--pillBg);
+      border:1px solid var(--line);
+      background: rgba(18,18,18,.50); /* ✅ 단색 */
       white-space:nowrap;
-      transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+      transition: border-color .15s ease, transform .15s ease;
     }
     .tpill:hover{ border-color: var(--todayLine); transform: translateY(-1px); }
     .tdot{
       width:10px; height:10px; border-radius:50%;
       background:var(--accent);
-      box-shadow:0 0 0 4px rgba(255,181,92,.12);
+      box-shadow:0 0 0 4px rgba(255,181,92,.10);
       flex:0 0 auto;
     }
     .tdate{ font-weight:900; font-size:12px; color:var(--accent); }
@@ -160,44 +157,26 @@
 
     .tpill.today{
       border-color: var(--todayLine);
-      box-shadow: 0 0 0 1px rgba(255,181,92,.10), 0 10px 26px rgba(0,0,0,.35);
+      box-shadow: 0 0 0 1px rgba(255,181,92,.08), 0 10px 26px rgba(0,0,0,.30);
     }
-    .tpill.today .tdot{ box-shadow:0 0 0 5px rgba(255,181,92,.16); }
 
-    /* ===== Cards ===== */
+    /* ===== Cards (✅ 완전 단색) ===== */
     .card{
-      background:
-        radial-gradient(1000px 260px at 10% 0%, var(--cardA), transparent 62%),
-        radial-gradient(900px 260px at 95% 40%, var(--cardB), transparent 65%),
-        linear-gradient(180deg, rgba(32,32,34,.92) 0%, rgba(27,27,28,.92) 100%);
+      background: var(--surface);
       border:1px solid var(--line);
       border-radius:16px;
       padding:18px 18px 22px;
       margin-bottom:18px;
       box-shadow: var(--shadow);
       scroll-margin-top:18px;
-      backdrop-filter: blur(8px);
       position:relative;
       overflow:hidden;
     }
-    .card.v2{ --cardA: rgba(255,255,255,.04); --cardB: rgba(255,181,92,.08); }
-    .card.v3{ --cardA: rgba(255,122,24,.10); --cardB: rgba(255,181,92,.06); }
-
     .card.today{
-      border-color: var(--todayLine);
+      border-color: var(--todayLine); /* ✅ 글로우 제거, 테두리만 */
       box-shadow: 0 18px 46px rgba(0,0,0,.50);
     }
-    .card.today::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(1100px 260px at 10% 0%, var(--todayGlow), transparent 60%),
-        radial-gradient(900px 260px at 95% 40%, rgba(255,122,24,.12), transparent 62%);
-      pointer-events:none;
-      z-index:0;
-    }
-    .card > *{ position:relative; z-index:1; }
+    .card.today::before{ display:none; } /* ✅ 오늘자 그라데이션/글로우 완전 제거 */
 
     .meta{ color:var(--accent); font-weight:900; font-size:14px; margin-bottom:6px; }
     .theme-row{
@@ -220,7 +199,7 @@
       gap:6px;
       padding:4px 10px;
       border-radius:999px;
-      border:1px solid rgba(255,181,92,.18);
+      border:1px solid var(--line);
       background: rgba(18,18,18,.45);
       color: rgba(241,239,233,.86);
       font-size:12px;
@@ -244,8 +223,8 @@
       gap:8px;
       padding:7px 10px;
       border-radius:999px;
-      border:1px solid rgba(255,181,92,.22);
-      background: rgba(255,181,92,.12);
+      border:1px solid rgba(255,181,92,.20);
+      background: rgba(255,181,92,.10);
       color: rgba(241,239,233,.96);
       font-weight:900;
       font-size:13px;
@@ -256,23 +235,20 @@
       align-items:center;
       justify-content:center;
       border-radius:8px;
-      background: rgba(255,181,92,.18);
-      border:1px solid rgba(255,181,92,.25);
+      background: rgba(255,181,92,.14);
+      border:1px solid rgba(255,181,92,.18);
       color: var(--accent);
       flex:0 0 auto;
     }
     .songmeta{ font-size:12px; color:var(--muted2); font-weight:900; }
 
-    /* Player */
+    /* Player (✅ 깔끔 단색) */
     .player{
       margin-top:12px;
       padding:12px;
       border:1px solid var(--line);
       border-radius:14px;
-      background:
-        radial-gradient(1100px 260px at 10% 0%, var(--playerBgA), transparent 60%),
-        radial-gradient(900px 260px at 95% 40%, var(--playerBgB), transparent 60%),
-        linear-gradient(180deg, var(--playerSurface) 0%, rgba(20,20,20,.55) 100%);
+      background: rgba(18,18,18,.35); /* ✅ 단색 */
       overflow:hidden;
     }
     .player-head{
@@ -287,11 +263,11 @@
     .link{
       font-size:12px; font-weight:900;
       color:var(--accent);
-      background:var(--soft);
+      background:rgba(255,181,92,.10);
       padding:6px 10px;
       border-radius:999px;
       text-decoration:none;
-      border:1px solid rgba(255,181,92,.22);
+      border:1px solid rgba(255,181,92,.20);
       white-space:nowrap;
       cursor:pointer;
     }
@@ -315,25 +291,25 @@
       padding:7px 10px;
       border-radius:999px;
       border:1px solid var(--line);
-      background:rgba(18,18,18,.45);
+      background:rgba(18,18,18,.40); /* ✅ 단색 */
       color:var(--accent);
       user-select:none;
     }
     #ps42_1:checked ~ .tabbar label[for="ps42_1"],
     #ps42_2:checked ~ .tabbar label[for="ps42_2"]{
-      background:var(--soft);
+      background:rgba(255,181,92,.12);
       border-color: var(--todayLine);
     }
     .tabpanels .panel{ display:none; }
     #ps42_1:checked ~ .tabpanels #panel_ps42_1{ display:block; }
     #ps42_2:checked ~ .tabpanels #panel_ps42_2{ display:block; }
 
-    /* Lyrics accordion (kept) */
+    /* Lyrics accordion */
     details.lyrics{
       margin-top:12px;
       border:1px solid var(--line);
       border-radius:12px;
-      background:rgba(18,18,18,.45);
+      background:rgba(18,18,18,.35); /* ✅ 단색 */
       overflow:hidden;
     }
     details.lyrics summary{
@@ -343,7 +319,7 @@
       user-select:none;
       color:var(--accent);
       font-family:'HannaPro',"SUIT",sans-serif;
-      background:linear-gradient(180deg, rgba(32,32,34,.65) 0%, rgba(18,18,18,.45) 100%);
+      background: rgba(18,18,18,.22); /* ✅ 단색 */
     }
     details.lyrics summary::-webkit-details-marker{ display:none; }
     .lyrics-body{
@@ -370,7 +346,7 @@
       .tlabel{ display:none; }
     }
 
-    /* ===== Minimal Custom Audio Player ===== */
+    /* ===== Minimal Custom Audio Player (✅ 깔끔 단색) ===== */
     .mplayer{
       display:flex;
       align-items:center;
@@ -378,10 +354,7 @@
       padding:14px;
       border:1px solid rgba(255,255,255,.10);
       border-radius:16px;
-      background:
-        radial-gradient(900px 220px at 12% 10%, rgba(255,181,92,.14), transparent 60%),
-        linear-gradient(180deg, rgba(28,28,30,.78) 0%, rgba(18,18,18,.55) 100%);
-      backdrop-filter: blur(10px);
+      background: rgba(18,18,18,.28); /* ✅ 단색 */
       overflow:hidden;
     }
 
@@ -389,8 +362,8 @@
       width:46px;
       height:46px;
       border-radius:999px;
-      border:1px solid rgba(255,181,92,.28);
-      background: rgba(255,181,92,.14);
+      border:1px solid rgba(255,181,92,.22);
+      background: rgba(255,181,92,.10);
       color:var(--accent);
       font-weight:950;
       cursor:pointer;
@@ -415,39 +388,29 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* Desktop-only Volume UI (icon + slider) */
+    /* Desktop-only volume control (keeps mobile clean) */
     .mp-volwrap{
-      display:none;              /* hidden by default */
+      display:none;
       align-items:center;
       gap:10px;
       flex:0 0 auto;
-    }
-    @media (min-width:700px){
-      .mp-volwrap{ display:flex; }
+      margin-left:6px;
     }
 
     .mp-volbtn{
-      width:42px;
-      height:42px;
+      width:38px;
+      height:38px;
       border-radius:999px;
-      border:1px solid rgba(255,181,92,.28);
-      background: rgba(255,181,92,.14);
-      color:var(--accent);
+      border:1px solid rgba(255,181,92,.20);
+      background: rgba(255,181,92,.08);
+      color: var(--accent);
       cursor:pointer;
-      flex:0 0 auto;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      transition: filter .15s ease, transform .15s ease, border-color .15s ease;
+      flex:0 0 auto;
     }
-    .mp-volbtn:hover{ filter:brightness(1.06); transform: translateY(-1px); }
-    .mp-volbtn:active{ transform: translateY(0px); }
-
-    .mp-volbtn svg{
-      width:20px;
-      height:20px;
-      display:block;
-    }
+    .mp-volbtn:hover{ filter:brightness(1.06); }
 
     .mp-vol{
       width:110px;
@@ -457,13 +420,15 @@
       accent-color: var(--accent);
     }
 
-    /* time text on mobile: shorter + never clip */
+    @media (min-width: 760px) and (pointer: fine){
+      .mp-volwrap{ display:flex; }
+    }
+
     @media (max-width:520px){
       .mplayer{ padding:12px; gap:10px; }
       .mp-btn{ width:44px; height:44px; }
       .mp-seek{ min-width:0; }
       .mp-time{ font-size:12px; }
-      /* volume stays hidden on mobile */
     }
   </style>
 </head>
@@ -505,7 +470,7 @@
     </section>
 
     <!-- 2/19 -->
-    <section class="card v1" id="d0219" data-date="02-19">
+    <section class="card" id="d0219" data-date="02-19">
       <div class="meta">🗓️ 2월 19일 (목)</div>
       <div class="theme-row">
         <h2 class="theme">Lavish Love</h2>
@@ -522,15 +487,19 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-19.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 · -0:00</span>
 
           <div class="mp-volwrap" aria-label="볼륨">
             <button class="mp-volbtn" type="button" aria-label="음소거">
-              <span class="mp-volicon" aria-hidden="true"></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+              </svg>
             </button>
-            <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
+            <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
           </div>
 
-          <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
       </div>
@@ -540,7 +509,7 @@
     </section>
 
     <!-- 2/20 -->
-    <section class="card v2" id="d0220" data-date="02-20">
+    <section class="card" id="d0220" data-date="02-20">
       <div class="meta">🗓️ 2월 20일 (금)</div>
       <div class="theme-row">
         <h2 class="theme">Living for Jesus</h2>
@@ -557,15 +526,19 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-20.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 · -0:00</span>
 
           <div class="mp-volwrap" aria-label="볼륨">
             <button class="mp-volbtn" type="button" aria-label="음소거">
-              <span class="mp-volicon" aria-hidden="true"></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+              </svg>
             </button>
-            <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
+            <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
           </div>
 
-          <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
       </div>
@@ -575,7 +548,7 @@
     </section>
 
     <!-- 2/21 -->
-    <section class="card v3" id="d0221" data-date="02-21">
+    <section class="card" id="d0221" data-date="02-21">
       <div class="meta">🗓️ 2월 21일 (토)</div>
       <div class="theme-row">
         <h2 class="theme">Remembering to Forget</h2>
@@ -613,15 +586,19 @@
               <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-21-b.mp3">
                 <button class="mp-btn" type="button" aria-label="재생">▶</button>
                 <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+                <span class="mp-time">0:00 · -0:00</span>
 
                 <div class="mp-volwrap" aria-label="볼륨">
                   <button class="mp-volbtn" type="button" aria-label="음소거">
-                    <span class="mp-volicon" aria-hidden="true"></span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                      <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+                    </svg>
                   </button>
-                  <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
+                  <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
                 </div>
 
-                <span class="mp-time">0:00 · -0:00</span>
                 <audio preload="metadata" playsinline></audio>
               </div>
             </div>
@@ -635,15 +612,19 @@
               <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-21-a.mp3">
                 <button class="mp-btn" type="button" aria-label="재생">▶</button>
                 <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+                <span class="mp-time">0:00 · -0:00</span>
 
                 <div class="mp-volwrap" aria-label="볼륨">
                   <button class="mp-volbtn" type="button" aria-label="음소거">
-                    <span class="mp-volicon" aria-hidden="true"></span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                      <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+                    </svg>
                   </button>
-                  <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
+                  <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
                 </div>
 
-                <span class="mp-time">0:00 · -0:00</span>
                 <audio preload="metadata" playsinline></audio>
               </div>
             </div>
@@ -656,7 +637,7 @@
     </section>
 
     <!-- 2/22 -->
-    <section class="card v1" id="d0222" data-date="02-22">
+    <section class="card" id="d0222" data-date="02-22">
       <div class="meta">🗓️ 2월 22일 (주일)</div>
       <div class="theme-row">
         <h2 class="theme">Schooled in Love</h2>
@@ -673,15 +654,19 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-22.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 · -0:00</span>
 
           <div class="mp-volwrap" aria-label="볼륨">
             <button class="mp-volbtn" type="button" aria-label="음소거">
-              <span class="mp-volicon" aria-hidden="true"></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+              </svg>
             </button>
-            <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
+            <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
           </div>
 
-          <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
       </div>
@@ -691,7 +676,7 @@
     </section>
 
     <!-- 2/23 -->
-    <section class="card v2" id="d0223" data-date="02-23">
+    <section class="card" id="d0223" data-date="02-23">
       <div class="meta">🗓️ 2월 23일 (월)</div>
       <div class="theme-row">
         <h2 class="theme">Humble Leadership</h2>
@@ -710,15 +695,19 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-23.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 · -0:00</span>
 
           <div class="mp-volwrap" aria-label="볼륨">
             <button class="mp-volbtn" type="button" aria-label="음소거">
-              <span class="mp-volicon" aria-hidden="true"></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+              </svg>
             </button>
-            <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
+            <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
           </div>
 
-          <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
       </div>
@@ -728,7 +717,7 @@
     </section>
 
     <!-- 2/24 -->
-    <section class="card v3" id="d0224" data-date="02-24">
+    <section class="card" id="d0224" data-date="02-24">
       <div class="meta">🗓️ 2월 24일 (화)</div>
       <div class="theme-row">
         <h2 class="theme">Missing the Divine</h2>
@@ -745,15 +734,19 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-24.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 · -0:00</span>
 
           <div class="mp-volwrap" aria-label="볼륨">
             <button class="mp-volbtn" type="button" aria-label="음소거">
-              <span class="mp-volicon" aria-hidden="true"></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+              </svg>
             </button>
-            <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
+            <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
           </div>
 
-          <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
       </div>
@@ -763,7 +756,7 @@
     </section>
 
     <!-- 2/25 -->
-    <section class="card v1" id="d0225" data-date="02-25">
+    <section class="card" id="d0225" data-date="02-25">
       <div class="meta">🗓️ 2월 25일 (수)</div>
       <div class="theme-row">
         <h2 class="theme">Abusing God’s Name</h2>
@@ -780,15 +773,19 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-25.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 · -0:00</span>
 
           <div class="mp-volwrap" aria-label="볼륨">
             <button class="mp-volbtn" type="button" aria-label="음소거">
-              <span class="mp-volicon" aria-hidden="true"></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+              </svg>
             </button>
-            <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
+            <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
           </div>
 
-          <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
       </div>
@@ -798,7 +795,7 @@
     </section>
 
     <!-- 2/26 -->
-    <section class="card v2" id="d0226" data-date="02-26">
+    <section class="card" id="d0226" data-date="02-26">
       <div class="meta">🗓️ 2월 26일 (목)</div>
       <div class="theme-row">
         <h2 class="theme">God’s Rainbow Answer</h2>
@@ -815,15 +812,19 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-26.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 · -0:00</span>
 
           <div class="mp-volwrap" aria-label="볼륨">
             <button class="mp-volbtn" type="button" aria-label="음소거">
-              <span class="mp-volicon" aria-hidden="true"></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+              </svg>
             </button>
-            <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
+            <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
           </div>
 
-          <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
       </div>
@@ -891,7 +892,7 @@
     </section>
 
     <!-- 2/27 -->
-    <section class="card v3" id="d0227" data-date="02-27">
+    <section class="card" id="d0227" data-date="02-27">
       <div class="meta">🗓️ 2월 27일 (금)</div>
       <div class="theme-row">
         <h2 class="theme">Prayer Walk</h2>
@@ -908,15 +909,19 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-27.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 · -0:00</span>
 
           <div class="mp-volwrap" aria-label="볼륨">
             <button class="mp-volbtn" type="button" aria-label="음소거">
-              <span class="mp-volicon" aria-hidden="true"></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+              </svg>
             </button>
-            <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
+            <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
           </div>
 
-          <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
       </div>
@@ -925,7 +930,7 @@
     </section>
 
     <!-- 2/28 -->
-    <section class="card v1" id="d0228" data-date="02-28">
+    <section class="card" id="d0228" data-date="02-28">
       <div class="meta">🗓️ 2월 28일 (토)</div>
       <div class="theme-row">
         <h2 class="theme">Faith of Friends</h2>
@@ -942,15 +947,19 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-28.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 · -0:00</span>
 
           <div class="mp-volwrap" aria-label="볼륨">
             <button class="mp-volbtn" type="button" aria-label="음소거">
-              <span class="mp-volicon" aria-hidden="true"></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+              </svg>
             </button>
-            <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
+            <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
           </div>
 
-          <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
       </div>
@@ -959,7 +968,7 @@
     </section>
 
     <!-- 3/1 -->
-    <section class="card v2" id="d0301" data-date="03-01">
+    <section class="card" id="d0301" data-date="03-01">
       <div class="meta">🗓️ 3월 1일 (주일)</div>
       <div class="theme-row">
         <h2 class="theme">Go and Tell of Jesus</h2>
@@ -979,15 +988,19 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-01.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 · -0:00</span>
 
           <div class="mp-volwrap" aria-label="볼륨">
             <button class="mp-volbtn" type="button" aria-label="음소거">
-              <span class="mp-volicon" aria-hidden="true"></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+              </svg>
             </button>
-            <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
+            <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
           </div>
 
-          <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
       </div>
@@ -997,11 +1010,11 @@
     </section>
 
     <!-- 3/2 -->
-    <section class="card v3" id="d0302" data-date="03-02">
+    <section class="card" id="d0302" data-date="03-02">
       <div class="meta">🗓️ 3월 2일 (월)</div>
       <div class="theme-row">
         <h2 class="theme">Refreshing Generosity</h2>
-        <span class="vibe"><span class="icon">💧</span> 베풂 · 새로움</span>
+        <span class="vibe"><span class="icon">✨</span> 베풂 · 새로움</span>
       </div>
       <div class="scripture">📖 잠언 11:24–31</div>
 
@@ -1017,15 +1030,19 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-02.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <span class="mp-time">0:00 · -0:00</span>
 
           <div class="mp-volwrap" aria-label="볼륨">
             <button class="mp-volbtn" type="button" aria-label="음소거">
-              <span class="mp-volicon" aria-hidden="true"></span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+              </svg>
             </button>
-            <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
+            <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
           </div>
 
-          <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
       </div>
@@ -1064,7 +1081,6 @@
     async function forceDownload(url){
       const filename = (url.split('/').pop() || 'audio.mp3').split('?')[0];
 
-      // download 속성 먼저 시도
       const a = document.createElement('a');
       a.href = url;
       a.download = filename;
@@ -1073,7 +1089,6 @@
       a.click();
       document.body.removeChild(a);
 
-      // Safari/iOS/크로스오리진에서 download 무시될 수 있어서 blob 시도
       try{
         const res = await fetch(url, { mode:'cors', cache:'no-store' });
         if(!res.ok) throw new Error('fetch failed');
@@ -1090,7 +1105,6 @@
 
         setTimeout(()=>URL.revokeObjectURL(blobUrl), 1500);
       }catch(e){
-        // 마지막 fallback: 그냥 열기 (사용자가 공유/저장)
         window.open(url, '_blank', 'noopener');
       }
     }
@@ -1116,7 +1130,6 @@
       const targetCard = document.querySelector('.card[data-date="' + key + '"]');
       const targetItem = document.querySelector('.titem[data-date="' + key + '"]');
 
-      // 날짜가 페이지에 없으면 배지만 표기하고 끝
       if(!targetCard || !targetItem) return;
 
       document.querySelectorAll('.tpill.today').forEach(p => p.classList.remove('today'));
@@ -1143,22 +1156,6 @@
       });
     }
 
-    // ---- Volume Icons (SVG, unified style) ----
-    const SVG_VOL = `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M11 5L6 9H3v6h3l5 4V5z"></path>
-        <path d="M15.5 8.5a5 5 0 0 1 0 7"></path>
-        <path d="M18.5 6.5a8 8 0 0 1 0 11"></path>
-      </svg>
-    `;
-    const SVG_MUTE = `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M11 5L6 9H3v6h3l5 4V5z"></path>
-        <path d="M23 9l-6 6"></path>
-        <path d="M17 9l6 6"></path>
-      </svg>
-    `;
-
     function initPlayers(){
       const players = Array.from(document.querySelectorAll('.mplayer[data-audio-src]'));
       const audios = players.map(p => p.querySelector('audio')).filter(Boolean);
@@ -1170,65 +1167,56 @@
       };
 
       players.forEach(p=>{
-        const src     = p.getAttribute('data-audio-src');
-        const audio   = p.querySelector('audio');
-        const btn     = p.querySelector('.mp-btn');
-        const seek    = p.querySelector('.mp-seek');
+        const src   = p.getAttribute('data-audio-src');
+        const audio = p.querySelector('audio');
+        const btn   = p.querySelector('.mp-btn');
+        const seek  = p.querySelector('.mp-seek');
+        const time  = p.querySelector('.mp-time');
+
         const volBtn  = p.querySelector('.mp-volbtn');
-        const volIcon = p.querySelector('.mp-volicon');
         const vol     = p.querySelector('.mp-vol');
-        const time    = p.querySelector('.mp-time');
 
         if(!src || !audio || !btn || !seek || !time) return;
 
         audio.src = src;
         audio.preload = 'metadata';
 
-        // ---- Volume state (shared across players) ----
-        const savedVol = localStorage.getItem('lentVol');
-        const savedMute = localStorage.getItem('lentMuted');
-
-        if(savedVol !== null){
-          const v = Math.min(1, Math.max(0, parseFloat(savedVol)));
-          if(isFinite(v)) audio.volume = v;
-        }
-        if(savedMute === '1') audio.muted = true;
-
-        const paintVolIcon = ()=>{
-          if(!volIcon) return;
-          const isMute = audio.muted || (audio.volume === 0);
-          volIcon.innerHTML = isMute ? SVG_MUTE : SVG_VOL;
-          if(volBtn){
-            volBtn.setAttribute('aria-label', isMute ? '음소거 해제' : '음소거');
-          }
+        // Volume init
+        let lastVolume = 1;
+        const setVolUI = ()=>{
+          if(!vol || !volBtn) return;
+          const v = audio.muted ? 0 : audio.volume;
+          vol.value = Math.round(v * 100);
+          volBtn.setAttribute('aria-label', (audio.muted || v === 0) ? '음소거 해제' : '음소거');
+          volBtn.style.opacity = (audio.muted || v === 0) ? '0.65' : '1';
         };
 
         if(vol){
-          vol.value = String(audio.volume ?? 1);
+          audio.volume = 1;
+          audio.muted = false;
+          vol.value = 100;
+
           vol.addEventListener('input', ()=>{
-            const v = Math.min(1, Math.max(0, parseFloat(vol.value)));
-            audio.volume = isFinite(v) ? v : 1;
-            audio.muted = false; // 슬라이더 조절하면 음소거 해제
-            localStorage.setItem('lentVol', String(audio.volume));
-            localStorage.setItem('lentMuted', '0');
-            paintVolIcon();
+            const v = Math.max(0, Math.min(100, Number(vol.value))) / 100;
+            audio.volume = v;
+            audio.muted = (v === 0);
+            if(v > 0) lastVolume = v;
+            setVolUI();
           });
         }
 
         if(volBtn){
           volBtn.addEventListener('click', ()=>{
-            audio.muted = !audio.muted;
-            localStorage.setItem('lentMuted', audio.muted ? '1' : '0');
-            paintVolIcon();
+            if(audio.muted || audio.volume === 0){
+              audio.muted = false;
+              audio.volume = lastVolume > 0 ? lastVolume : 1;
+            }else{
+              lastVolume = audio.volume || lastVolume;
+              audio.muted = true;
+            }
+            setVolUI();
           });
         }
-
-        audio.addEventListener('volumechange', ()=>{
-          if(vol) vol.value = String(audio.volume ?? 1);
-          paintVolIcon();
-        });
-
-        paintVolIcon();
 
         const setBtn = ()=>{
           btn.textContent = audio.paused ? '▶' : '❚❚';
@@ -1239,11 +1227,7 @@
           stopOthers(audio);
 
           if(audio.paused){
-            try{
-              await audio.play();
-            }catch(err){
-              // iOS 정책 등으로 막히면 무시
-            }
+            try{ await audio.play(); }catch(err){}
           }else{
             audio.pause();
           }
@@ -1273,12 +1257,13 @@
 
         audio.addEventListener('pause', setBtn);
         audio.addEventListener('play', setBtn);
+        audio.addEventListener('volumechange', setVolUI);
 
         setBtn();
+        setVolUI();
       });
     }
 
-    // ===== Boot (DOM 준비 후 실행) =====
     document.addEventListener('DOMContentLoaded', ()=>{
       initTimeline();
       highlightToday();
