@@ -8,7 +8,7 @@
   <!-- Open Graph (Kakao / Facebook / iMessage / Slack) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Jay's Lent Devotional" />
-  <meta property="og:description" content="멈추고, 하나님께 머무는 사순절 · 묵상 기록과 직접 녹음한 찬양을 함께 나눕니다." />
+  <meta property="og:description" content="Stop &amp; Stay for Lent — devotions and worship." />
   <meta property="og:url" content="https://jay-vault.github.io/lent-devotional/" />
   <meta property="og:image" content="https://jay-vault.github.io/lent-devotional/og/og.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -35,6 +35,7 @@
     :root{
       --bg:#121212;
       --bg2:#101010;
+
       --ink:#f1efe9;
       --muted:#b9b6b0;
       --muted2:#9a9893;
@@ -56,9 +57,9 @@
       --todayGlow: rgba(255,181,92,.26);
       --todayLine: rgba(255,122,24,.32);
 
-      --cardA: rgba(255,181,92,.10);
-      --cardB: rgba(255,122,24,.08);
-      --cardC: rgba(255,255,255,.04);
+      /* NEW: clean card surface colors */
+      --cardSurfaceA: rgba(32,32,34,.92);
+      --cardSurfaceB: rgba(27,27,28,.92);
     }
 
     *{ box-sizing:border-box; }
@@ -176,12 +177,9 @@
     }
     .tpill.today .tdot{ box-shadow:0 0 0 5px rgba(255,181,92,.16); }
 
-    /* ===== Cards ===== */
+    /* ===== Cards (CLEAN: gradients removed) ===== */
     .card{
-      background:
-        radial-gradient(1000px 260px at 10% 0%, var(--cardA), transparent 62%),
-        radial-gradient(900px 260px at 95% 40%, var(--cardB), transparent 65%),
-        linear-gradient(180deg, rgba(32,32,34,.92) 0%, rgba(27,27,28,.92) 100%);
+      background: linear-gradient(180deg, var(--cardSurfaceA) 0%, var(--cardSurfaceB) 100%);
       border:1px solid var(--line);
       border-radius:16px;
       padding:18px 18px 22px;
@@ -192,8 +190,9 @@
       position:relative;
       overflow:hidden;
     }
-    .card.v2{ --cardA: rgba(255,255,255,.04); --cardB: rgba(255,181,92,.08); }
-    .card.v3{ --cardA: rgba(255,122,24,.10); --cardB: rgba(255,181,92,.06); }
+    .card.v2, .card.v3{ /* keep variants but still clean */
+      background: linear-gradient(180deg, var(--cardSurfaceA) 0%, var(--cardSurfaceB) 100%);
+    }
 
     .card.today{
       border-color: var(--todayLine);
@@ -429,7 +428,7 @@
 
     /* === Desktop-only volume control (keeps mobile clean) === */
     .mp-volwrap{
-      display:none; /* default hidden */
+      display:none;
       align-items:center;
       gap:10px;
       flex:0 0 auto;
@@ -459,12 +458,10 @@
       accent-color: var(--accent);
     }
 
-    /* show volume only on desktop-ish */
     @media (min-width: 760px) and (pointer: fine){
       .mp-volwrap{ display:flex; }
     }
 
-    /* time text on mobile: shorter + never clip */
     @media (max-width:520px){
       .mplayer{ padding:12px; gap:10px; }
       .mp-btn{ width:44px; height:44px; }
@@ -506,7 +503,7 @@
         <a class="titem" href="#d0227" data-date="02-27"><div class="tpill"><span class="tdot"></span><span class="tdate">2/27</span><span class="tlabel">Prayer Walk</span></div></a>
         <a class="titem" href="#d0228" data-date="02-28"><div class="tpill"><span class="tdot"></span><span class="tdate">2/28</span><span class="tlabel">Faith of Friends</span></div></a>
         <a class="titem" href="#d0301" data-date="03-01"><div class="tpill"><span class="tdot"></span><span class="tdate">3/1</span><span class="tlabel">Go and Tell</span></div></a>
-        <a class="titem" href="#d0302" data-date="03-02"><div class="tpill"><span class="tdot"></span><span class="tdate">3/2</span><span class="tlabel">Generosity</span></div></a>
+        <a class="titem" href="#d0302" data-date="03-02"><div class="tpill"><span class="tdot"></span><span class="tdate">3/2</span><span class="tlabel">Refreshing Generosity</span></div></a>
       </div>
     </section>
 
@@ -530,10 +527,8 @@
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
           <span class="mp-time">0:00 · -0:00</span>
 
-          <!-- Desktop Volume -->
           <div class="mp-volwrap" aria-label="볼륨">
             <button class="mp-volbtn" type="button" aria-label="음소거">
-              <!-- speaker icon -->
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
                 <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -1150,7 +1145,6 @@
 
         setTimeout(()=>URL.revokeObjectURL(blobUrl), 1500);
       }catch(e){
-        // 마지막 fallback: 그냥 열기 (사용자가 공유/저장)
         window.open(url, '_blank', 'noopener');
       }
     }
@@ -1176,7 +1170,6 @@
       const targetCard = document.querySelector('.card[data-date="' + key + '"]');
       const targetItem = document.querySelector('.titem[data-date="' + key + '"]');
 
-      // 날짜가 페이지에 없으면 배지만 표기하고 끝
       if(!targetCard || !targetItem) return;
 
       document.querySelectorAll('.tpill.today').forEach(p => p.classList.remove('today'));
@@ -1220,7 +1213,6 @@
         const seek  = p.querySelector('.mp-seek');
         const time  = p.querySelector('.mp-time');
 
-        const volWrap = p.querySelector('.mp-volwrap');
         const volBtn  = p.querySelector('.mp-volbtn');
         const vol     = p.querySelector('.mp-vol');
 
@@ -1236,12 +1228,10 @@
           const v = audio.muted ? 0 : audio.volume;
           vol.value = Math.round(v * 100);
           volBtn.setAttribute('aria-label', (audio.muted || v === 0) ? '음소거 해제' : '음소거');
-          // icon state (optional): just dim when muted
           volBtn.style.opacity = (audio.muted || v === 0) ? '0.65' : '1';
         };
 
         if(vol){
-          // default 100%
           audio.volume = 1;
           audio.muted = false;
           vol.value = 100;
@@ -1307,16 +1297,13 @@
 
         audio.addEventListener('pause', setBtn);
         audio.addEventListener('play', setBtn);
-
         audio.addEventListener('volumechange', setVolUI);
 
-        // initial
         setBtn();
         setVolUI();
       });
     }
 
-    // ===== Boot =====
     document.addEventListener('DOMContentLoaded', ()=>{
       initTimeline();
       highlightToday();
