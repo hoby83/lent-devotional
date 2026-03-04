@@ -1202,30 +1202,32 @@
     }
 
     function highlightToday(){
-      const now = new Date();
-      const mm = String(now.getMonth() + 1).padStart(2, '0');
-      const dd = String(now.getDate()).padStart(2, '0');
-      const key = mm + '-' + dd;
+  const now = new Date();
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const dd = String(now.getDate()).padStart(2, '0');
+  const key = mm + '-' + dd;
 
-      const todayText = document.getElementById('todayText');
-      if (todayText) todayText.textContent = (Number(mm) + '/' + Number(dd));
+  const todayText = document.getElementById('todayText');
+  if (todayText) todayText.textContent = (Number(mm) + '/' + Number(dd));
 
-      const targetCard = document.querySelector('.card[data-date="' + key + '"]');
-      const targetItem = document.querySelector('.titem[data-date="' + key + '"]');
+  const targetCard = document.querySelector('.card[data-date="' + key + '"]');
+  const targetItem = document.querySelector('.titem[data-date="' + key + '"]');
 
-      if(!targetCard || !targetItem) return;
+  if(!targetCard) return;
 
-      document.querySelectorAll('.tpill.today').forEach(p => p.classList.remove('today'));
-      const pill = targetItem.querySelector('.tpill');
-      if(pill) pill.classList.add('today');
+  document.querySelectorAll('.card.today').forEach(el => el.classList.remove('today'));
+  targetCard.classList.add('today');
 
-      document.querySelectorAll('.card.today').forEach(el => el.classList.remove('today'));
-      targetCard.classList.add('today');
+  if(targetItem){
+    document.querySelectorAll('.tpill.today').forEach(p => p.classList.remove('today'));
+    const pill = targetItem.querySelector('.tpill');
+    if(pill) pill.classList.add('today');
 
-      setTimeout(() => centerTimelineItem(targetItem), 80);
-      setTimeout(() => targetCard.scrollIntoView({ behavior:'smooth', block:'start' }), 250);
-    }
+    setTimeout(() => centerTimelineItem(targetItem), 80);
+  }
 
+  setTimeout(() => targetCard.scrollIntoView({ behavior:'smooth', block:'start' }), 250);
+}
     function initDownloads(){
       document.querySelectorAll('a.link[href$=".mp3"]').forEach(link=>{
         link.textContent = '파일다운';
