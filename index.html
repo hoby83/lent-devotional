@@ -23,7 +23,6 @@
   <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* Baemin-like title font (HannaPro) */
     @font-face {
       font-family: 'HannaPro';
       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
@@ -53,6 +52,7 @@
 
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
+
     body{
       margin:0;
       font-family:"SUIT",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
@@ -70,16 +70,27 @@
       letter-spacing:.2px;
       font-family:'HannaPro',"SUIT",sans-serif;
     }
+
     .badge{
-      display:inline-block; margin-left:8px; padding:3px 10px; border-radius:999px;
-      background:var(--soft); color:var(--accent); font-size:12px; font-weight:900;
+      display:inline-block;
+      margin-left:8px;
+      padding:3px 10px;
+      border-radius:999px;
+      background:var(--soft);
+      color:var(--accent);
+      font-size:12px;
+      font-weight:900;
       vertical-align:middle;
       border:1px solid rgba(255,181,92,.22);
       font-family:"SUIT",sans-serif;
     }
-    .sub{ margin-top:10px; color:var(--muted); font-size:15px; }
 
-    /* ===== Timeline ===== */
+    .sub{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:15px;
+    }
+
     .timeline{
       margin:18px 0 26px;
       padding:14px 14px;
@@ -97,6 +108,7 @@
       margin-bottom:10px;
       flex-wrap:wrap;
     }
+
     .timeline-title{
       font-size:14px;
       color:var(--accent);
@@ -116,14 +128,18 @@
       font-size:12px;
       font-weight:950;
       white-space:nowrap;
-      cursor:default;
+      cursor:pointer;
       user-select:none;
     }
+
     .today-badge .spark{
-      width:10px; height:10px; border-radius:50%;
+      width:10px;
+      height:10px;
+      border-radius:50%;
       background:var(--accent2);
       box-shadow:0 0 0 4px rgba(255,122,24,.12);
     }
+
     .today-badge .date{
       color:rgba(241,239,233,.86);
       font-weight:900;
@@ -137,9 +153,18 @@
       scroll-snap-type:x mandatory;
       -webkit-overflow-scrolling:touch;
     }
-    .titem{ flex:0 0 auto; scroll-snap-align:start; text-decoration:none; color:inherit; }
+
+    .titem{
+      flex:0 0 auto;
+      scroll-snap-align:start;
+      text-decoration:none;
+      color:inherit;
+    }
+
     .tpill{
-      display:flex; align-items:center; gap:10px;
+      display:flex;
+      align-items:center;
+      gap:10px;
       padding:10px 12px;
       border-radius:999px;
       border:1px solid var(--line);
@@ -147,22 +172,38 @@
       white-space:nowrap;
       transition: border-color .15s ease, transform .15s ease;
     }
-    .tpill:hover{ border-color: var(--todayLine); transform: translateY(-1px); }
+
+    .tpill:hover{
+      border-color: var(--todayLine);
+      transform: translateY(-1px);
+    }
+
     .tdot{
-      width:10px; height:10px; border-radius:50%;
+      width:10px;
+      height:10px;
+      border-radius:50%;
       background:var(--accent);
       box-shadow:0 0 0 4px rgba(255,181,92,.10);
       flex:0 0 auto;
     }
-    .tdate{ font-weight:900; font-size:12px; color:var(--accent); }
-    .tlabel{ font-size:12px; color:var(--muted); font-weight:900; }
+
+    .tdate{
+      font-weight:900;
+      font-size:12px;
+      color:var(--accent);
+    }
+
+    .tlabel{
+      font-size:12px;
+      color:var(--muted);
+      font-weight:900;
+    }
 
     .tpill.today{
       border-color: var(--todayLine);
       box-shadow: 0 0 0 1px rgba(255,181,92,.08), 0 10px 26px rgba(0,0,0,.30);
     }
 
-    /* ===== Cards ===== */
     .card{
       background: var(--surface);
       border:1px solid var(--line);
@@ -175,14 +216,20 @@
       overflow:hidden;
     }
 
-    /* 최신 카드 강조 (today 클래스 재활용) */
     .card.today{
       border-color: var(--todayLine);
       box-shadow: 0 18px 46px rgba(0,0,0,.50);
     }
+
     .card.today::before{ display:none; }
 
-    .meta{ color:var(--accent); font-weight:900; font-size:14px; margin-bottom:6px; }
+    .meta{
+      color:var(--accent);
+      font-weight:900;
+      font-size:14px;
+      margin-bottom:6px;
+    }
+
     .theme-row{
       display:flex;
       align-items:center;
@@ -190,6 +237,7 @@
       margin:4px 0 6px;
       flex-wrap:wrap;
     }
+
     .theme{
       font-size:20px;
       margin:0;
@@ -209,11 +257,14 @@
       font-size:12px;
       font-weight:900;
     }
+
     .vibe .icon{ color: var(--accent); }
 
-    .scripture{ font-size:14px; color:var(--muted); }
+    .scripture{
+      font-size:14px;
+      color:var(--muted);
+    }
 
-    /* Song chips */
     .songs{
       margin-top:10px;
       display:flex;
@@ -221,6 +272,7 @@
       gap:8px;
       align-items:center;
     }
+
     .songchip{
       display:inline-flex;
       align-items:center;
@@ -233,8 +285,10 @@
       font-weight:900;
       font-size:13px;
     }
+
     .songchip .note{
-      width:22px;height:22px;
+      width:22px;
+      height:22px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -244,9 +298,13 @@
       color: var(--accent);
       flex:0 0 auto;
     }
-    .songmeta{ font-size:12px; color:var(--muted2); font-weight:900; }
 
-    /* Player */
+    .songmeta{
+      font-size:12px;
+      color:var(--muted2);
+      font-weight:900;
+    }
+
     .player{
       margin-top:12px;
       padding:12px;
@@ -255,6 +313,7 @@
       background: rgba(18,18,18,.35);
       overflow:hidden;
     }
+
     .player-head{
       display:flex;
       justify-content:space-between;
@@ -263,9 +322,16 @@
       margin-bottom:10px;
       flex-wrap:wrap;
     }
-    .player-title{ font-size:13px; color:var(--muted2); font-weight:900; }
+
+    .player-title{
+      font-size:13px;
+      color:var(--muted2);
+      font-weight:900;
+    }
+
     .link{
-      font-size:12px; font-weight:900;
+      font-size:12px;
+      font-weight:900;
       color:var(--accent);
       background:rgba(255,181,92,.10);
       padding:6px 10px;
@@ -275,6 +341,7 @@
       white-space:nowrap;
       cursor:pointer;
     }
+
     .link:hover{ filter:brightness(1.06); }
 
     .one-liner{
@@ -284,10 +351,16 @@
       color: rgba(241,239,233,.92);
     }
 
-    /* Tabs */
     .tabs{ margin-top:8px; }
     .tabs input[type="radio"]{ position:absolute; opacity:0; pointer-events:none; }
-    .tabbar{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
+
+    .tabbar{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+
     .tab{
       cursor:pointer;
       font-size:12px;
@@ -299,16 +372,17 @@
       color:var(--accent);
       user-select:none;
     }
+
     #ps42_1:checked ~ .tabbar label[for="ps42_1"],
     #ps42_2:checked ~ .tabbar label[for="ps42_2"]{
       background:rgba(255,181,92,.12);
       border-color: var(--todayLine);
     }
+
     .tabpanels .panel{ display:none; }
     #ps42_1:checked ~ .tabpanels #panel_ps42_1{ display:block; }
     #ps42_2:checked ~ .tabpanels #panel_ps42_2{ display:block; }
 
-    /* Lyrics accordion */
     details.lyrics{
       margin-top:12px;
       border:1px solid var(--line);
@@ -316,6 +390,7 @@
       background:rgba(18,18,18,.35);
       overflow:hidden;
     }
+
     details.lyrics summary{
       cursor:pointer;
       padding:12px 12px;
@@ -325,7 +400,9 @@
       font-family:'HannaPro',"SUIT",sans-serif;
       background: rgba(18,18,18,.22);
     }
+
     details.lyrics summary::-webkit-details-marker{ display:none; }
+
     .lyrics-body{
       padding:12px 12px 14px;
       color: rgba(241,239,233,.92);
@@ -344,13 +421,6 @@
       white-space:pre-line;
     }
 
-    @media (max-width:480px){
-      .wrap{ padding:22px 14px 70px; }
-      h1{ font-size:26px; }
-      .tlabel{ display:none; }
-    }
-
-    /* ===== Minimal Custom Audio Player ===== */
     .mplayer{
       display:flex;
       align-items:center;
@@ -413,6 +483,7 @@
       justify-content:center;
       flex:0 0 auto;
     }
+
     .mp-volbtn:hover{ filter:brightness(1.06); }
 
     .mp-vol{
@@ -433,6 +504,12 @@
       .mp-seek{ min-width:0; }
       .mp-time{ font-size:12px; }
     }
+
+    @media (max-width:480px){
+      .wrap{ padding:22px 14px 70px; }
+      h1{ font-size:26px; }
+      .tlabel{ display:none; }
+    }
   </style>
 </head>
 
@@ -446,7 +523,6 @@
       </div>
     </header>
 
-    <!-- Timeline -->
     <section class="timeline" aria-label="Lent timeline">
       <div class="timeline-top">
         <div class="timeline-title">📍 날짜별 바로가기</div>
@@ -456,25 +532,9 @@
         </div>
       </div>
 
-      <div class="timeline-row" id="timelineRow">
-        <a class="titem" href="#d0219" data-date="02-19"><div class="tpill"><span class="tdot"></span><span class="tdate">2/19</span><span class="tlabel">Lavish Love</span></div></a>
-        <a class="titem" href="#d0220" data-date="02-20"><div class="tpill"><span class="tdot"></span><span class="tdate">2/20</span><span class="tlabel">Living for Jesus</span></div></a>
-        <a class="titem" href="#d0221" data-date="02-21"><div class="tpill"><span class="tdot"></span><span class="tdate">2/21</span><span class="tlabel">Psalm 42</span></div></a>
-        <a class="titem" href="#d0222" data-date="02-22"><div class="tpill"><span class="tdot"></span><span class="tdate">2/22</span><span class="tlabel">Schooled in Love</span></div></a>
-        <a class="titem" href="#d0223" data-date="02-23"><div class="tpill"><span class="tdot"></span><span class="tdate">2/23</span><span class="tlabel">Humble Leadership</span></div></a>
-        <a class="titem" href="#d0224" data-date="02-24"><div class="tpill"><span class="tdot"></span><span class="tdate">2/24</span><span class="tlabel">Missing the Divine</span></div></a>
-        <a class="titem" href="#d0225" data-date="02-25"><div class="tpill"><span class="tdot"></span><span class="tdate">2/25</span><span class="tlabel">Exodus 20</span></div></a>
-        <a class="titem" href="#d0226" data-date="02-26"><div class="tpill"><span class="tdot"></span><span class="tdate">2/26</span><span class="tlabel">Rainbow Answer</span></div></a>
-        <a class="titem" href="#d0227" data-date="02-27"><div class="tpill"><span class="tdot"></span><span class="tdate">2/27</span><span class="tlabel">Prayer Walk</span></div></a>
-        <a class="titem" href="#d0228" data-date="02-28"><div class="tpill"><span class="tdot"></span><span class="tdate">2/28</span><span class="tlabel">Faith of Friends</span></div></a>
-        <a class="titem" href="#d0301" data-date="03-01"><div class="tpill"><span class="tdot"></span><span class="tdate">3/1</span><span class="tlabel">Go and Tell</span></div></a>
-        <a class="titem" href="#d0302" data-date="03-02"><div class="tpill"><span class="tdot"></span><span class="tdate">3/2</span><span class="tlabel">Refreshing Generosity</span></div></a>
-        <a class="titem" href="#d0303" data-date="03-03"><div class="tpill"><span class="tdot"></span><span class="tdate">3/3</span><span class="tlabel">Undeniable Power</span></div></a>
-        <a class="titem" href="#d0304" data-date="03-04"><div class="tpill"><span class="tdot"></span><span class="tdate">3/4</span><span class="tlabel">Unnamed Women</span></div></a>
-      </div>
+      <div class="timeline-row" id="timelineRow"></div>
     </section>
 
-    <!-- Cards (정렬은 JS에서 최신→과거로 재배치) -->
     <main id="cards">
 
       <!-- 2/19 -->
@@ -983,7 +1043,6 @@
           <span class="vibe"><span class="icon">⛰️</span> 복음 · 걸음</span>
         </div>
         <div class="scripture">📖 로마서 10:12–15</div>
-
         <div class="songs">
           <span class="songchip"><span class="note">♪</span>복음들고 산을</span>
         </div>
@@ -1025,7 +1084,6 @@
           <span class="vibe"><span class="icon">✨</span> 베풂 · 새로움</span>
         </div>
         <div class="scripture">📖 잠언 11:24–31</div>
-
         <div class="songs">
           <span class="songchip"><span class="note">♪</span>사랑은 여전히 사랑이어서</span>
         </div>
@@ -1067,7 +1125,6 @@
           <span class="vibe"><span class="icon">🏰</span> 능력 · 보호</span>
         </div>
         <div class="scripture">📖 다니엘 6:25–28</div>
-
         <div class="songs">
           <span class="songchip"><span class="note">♪</span>A Mighty Fortress Is Our God</span>
         </div>
@@ -1109,7 +1166,6 @@
           <span class="vibe"><span class="icon">🤲</span> 섬김 · 동행</span>
         </div>
         <div class="scripture">📖 누가복음 8:1–3</div>
-
         <div class="songs">
           <span class="songchip"><span class="note">♪</span>낮은 곳으로</span>
         </div>
@@ -1142,51 +1198,51 @@
         <p class="one-liner">이름 없이 섬겨도, 낮은 자리에서 드린 삶은 하나님 나라의 이야기가 된다.</p>
       </section>
 
-<!-- 3/5 -->
-<section class="card" id="d0305" data-date="03-05">
-  <div class="meta">🗓️ 3월 5일 (목)</div>
-  <div class="theme-row">
-    <h2 class="theme">Strength from Struggle</h2>
-    <span class="vibe"><span class="icon">🌿</span> 고난 · 소망</span>
-  </div>
+      <!-- 3/5 -->
+      <section class="card" id="d0305" data-date="03-05">
+        <div class="meta">🗓️ 3월 5일 (목)</div>
+        <div class="theme-row">
+          <h2 class="theme">Strength from Struggle</h2>
+          <span class="vibe"><span class="icon">🌿</span> 고난 · 소망</span>
+        </div>
 
-  <div class="scripture">📖 로마서 5:1–5</div>
+        <div class="scripture">📖 로마서 5:1–5</div>
 
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>고난 너머</span>
-  </div>
+        <div class="songs">
+          <span class="songchip"><span class="note">♪</span>고난 너머</span>
+        </div>
 
-  <div class="player">
-    <div class="player-head">
-      <div class="player-title">🎧 듣기</div>
-      <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-05.mp3">파일다운</a>
-    </div>
+        <div class="player">
+          <div class="player-head">
+            <div class="player-title">🎧 듣기</div>
+            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-05.mp3">파일다운</a>
+          </div>
 
-    <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-05.mp3">
-      <button class="mp-btn" type="button" aria-label="재생">▶</button>
-      <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
-      <span class="mp-time">0:00 · -0:00</span>
+          <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-05.mp3">
+            <button class="mp-btn" type="button" aria-label="재생">▶</button>
+            <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+            <span class="mp-time">0:00 · -0:00</span>
 
-      <div class="mp-volwrap" aria-label="볼륨">
-        <button class="mp-volbtn" type="button" aria-label="음소거">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-            <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
-          </svg>
-        </button>
-        <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
-      </div>
+            <div class="mp-volwrap" aria-label="볼륨">
+              <button class="mp-volbtn" type="button" aria-label="음소거">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+                </svg>
+              </button>
+              <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
+            </div>
 
-      <audio preload="metadata" playsinline></audio>
-    </div>
-  </div>
+            <audio preload="metadata" playsinline></audio>
+          </div>
+        </div>
 
-  <p class="one-liner">고난 너머 우리를 소망으로.</p>
+        <p class="one-liner">고난 너머 우리를 소망으로.</p>
 
-  <details class="lyrics">
-    <summary>가사 보기</summary>
-    <div class="lyrics-body">고난중에 낙심않고 믿음으로 기도하면
+        <details class="lyrics">
+          <summary>가사 보기</summary>
+          <div class="lyrics-body">고난중에 낙심않고 믿음으로 기도하면
 고난너머 하나님의 선하신 뜻 보이리라
 
 고난중에 낙심않고 믿음으로 찬송하면
@@ -1197,52 +1253,52 @@
 
 고난중에 낙심않고 믿음으로 순종하면
 그댈 통해 하나님의 선하신 뜻 이뤄지리</div>
-  </details>
-</section>
+        </details>
+      </section>
 
-<!-- 3/6 -->
-<section class="card" id="d0306" data-date="03-06">
-  <div class="meta">🗓️ 3월 6일 (금)</div>
-  <div class="theme-row">
-    <h2 class="theme">God’s Goodness</h2>
-    <span class="vibe"><span class="icon">🍇</span> 선하심 · 기억</span>
-  </div>
+      <!-- 3/6 -->
+      <section class="card" id="d0306" data-date="03-06">
+        <div class="meta">🗓️ 3월 6일 (금)</div>
+        <div class="theme-row">
+          <h2 class="theme">God’s Goodness</h2>
+          <span class="vibe"><span class="icon">🍇</span> 선하심 · 기억</span>
+        </div>
 
-  <div class="scripture">📖 신명기 6:10–19</div>
+        <div class="scripture">📖 신명기 6:10–19</div>
 
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>Goodness of God</span>
-  </div>
+        <div class="songs">
+          <span class="songchip"><span class="note">♪</span>Goodness of God</span>
+        </div>
 
-  <div class="player">
-    <div class="player-head">
-      <div class="player-title">🎧 듣기</div>
-      <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-06.mp3">파일다운</a>
-    </div>
+        <div class="player">
+          <div class="player-head">
+            <div class="player-title">🎧 듣기</div>
+            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-06.mp3">파일다운</a>
+          </div>
 
-    <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-06.mp3">
-      <button class="mp-btn" type="button" aria-label="재생">▶</button>
-      <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
-      <span class="mp-time">0:00 · -0:00</span>
+          <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-06.mp3">
+            <button class="mp-btn" type="button" aria-label="재생">▶</button>
+            <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+            <span class="mp-time">0:00 · -0:00</span>
 
-      <div class="mp-volwrap" aria-label="볼륨">
-        <button class="mp-volbtn" type="button" aria-label="음소거">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-            <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
-          </svg>
-        </button>
-        <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
-      </div>
+            <div class="mp-volwrap" aria-label="볼륨">
+              <button class="mp-volbtn" type="button" aria-label="음소거">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+                </svg>
+              </button>
+              <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
+            </div>
 
-      <audio preload="metadata" playsinline></audio>
-    </div>
-  </div>
+            <audio preload="metadata" playsinline></audio>
+          </div>
+        </div>
 
-  <p class="one-liner">심지 않은 포도원에서, 하나님의 선하심을 만난다.</p>
-</section>
-      
+        <p class="one-liner">심지 않은 포도원에서, 하나님의 선하심을 만난다.</p>
+      </section>
+
     </main>
 
     <footer>
@@ -1256,27 +1312,35 @@
   <script>
     function fmt(s){
       if(!isFinite(s) || s < 0) return '0:00';
-      const m = Math.floor(s/60);
-      const ss = String(Math.floor(s%60)).padStart(2,'0');
+      const m = Math.floor(s / 60);
+      const ss = String(Math.floor(s % 60)).padStart(2, '0');
       return m + ':' + ss;
     }
 
-    function centerTimelineItem(titem){
+    function getDateKey(mmdd, year){
+      const [m, d] = String(mmdd || '').split('-').map(Number);
+      return new Date(year, (m || 1) - 1, d || 1).getTime();
+    }
+
+    function getTodayMMDD(){
+      const now = new Date();
+      const mm = String(now.getMonth() + 1).padStart(2, '0');
+      const dd = String(now.getDate()).padStart(2, '0');
+      return `${mm}-${dd}`;
+    }
+
+    function centerTimelineItem(titem, behavior = 'smooth'){
       const row = document.getElementById('timelineRow');
       if (!row || !titem) return;
+
       const left = titem.offsetLeft;
       const width = titem.offsetWidth;
       const targetScroll = left - (row.clientWidth / 2) + (width / 2);
-      row.scrollTo({ left: Math.max(0, targetScroll), behavior: 'smooth' });
-    }
 
-    function initTimeline(){
-      const row = document.getElementById('timelineRow');
-      if(row){
-        row.querySelectorAll('.titem').forEach(a=>{
-          a.addEventListener('click', ()=> centerTimelineItem(a));
-        });
-      }
+      row.scrollTo({
+        left: Math.max(0, targetScroll),
+        behavior
+      });
     }
 
     function setTodayText(){
@@ -1284,40 +1348,108 @@
       const mm = String(now.getMonth() + 1).padStart(2, '0');
       const dd = String(now.getDate()).padStart(2, '0');
       const todayText = document.getElementById('todayText');
-      if (todayText) todayText.textContent = (Number(mm) + '/' + Number(dd));
+      if (todayText) todayText.textContent = `${Number(mm)}/${Number(dd)}`;
     }
 
     function reorderByDateDesc(){
       const year = new Date().getFullYear();
       const cardsWrap = document.getElementById('cards');
-      const row = document.getElementById('timelineRow');
       if(!cardsWrap) return;
-
-      const parseKey = (mmdd)=>{
-        const [m,d] = String(mmdd || '').split('-').map(Number);
-        return new Date(year, (m||1)-1, d||1).getTime();
-      };
 
       const cards = Array.from(cardsWrap.querySelectorAll('.card[data-date]'));
-      cards.sort((a,b)=> parseKey(b.dataset.date) - parseKey(a.dataset.date));
-      cards.forEach(c => cardsWrap.appendChild(c));
-
-      if(row){
-        const items = Array.from(row.querySelectorAll('.titem[data-date]'));
-        items.sort((a,b)=> parseKey(b.dataset.date) - parseKey(a.dataset.date));
-        items.forEach(i => row.appendChild(i));
-      }
+      cards.sort((a, b) => getDateKey(b.dataset.date, year) - getDateKey(a.dataset.date, year));
+      cards.forEach(card => cardsWrap.appendChild(card));
     }
 
-    function highlightLatestCard(){
+    function buildTimelineFromCards(){
+      const row = document.getElementById('timelineRow');
       const cardsWrap = document.getElementById('cards');
-      if(!cardsWrap) return;
+      const year = new Date().getFullYear();
 
-      const firstCard = cardsWrap.querySelector('.card[data-date]');
+      if(!row || !cardsWrap) return;
+
+      row.innerHTML = '';
+
+      const cards = Array.from(cardsWrap.querySelectorAll('.card[data-date]'));
+      cards.sort((a, b) => getDateKey(b.dataset.date, year) - getDateKey(a.dataset.date, year));
+
+      cards.forEach(card => {
+        const id = card.id;
+        const date = card.dataset.date || '';
+        const themeEl = card.querySelector('.theme');
+
+        if(!id || !date || !themeEl) return;
+
+        const [mm, dd] = date.split('-');
+        const label = themeEl.textContent.trim();
+
+        const a = document.createElement('a');
+        a.className = 'titem';
+        a.href = `#${id}`;
+        a.dataset.date = date;
+        a.innerHTML = `
+          <div class="tpill">
+            <span class="tdot"></span>
+            <span class="tdate">${Number(mm)}/${Number(dd)}</span>
+            <span class="tlabel">${label}</span>
+          </div>
+        `;
+
+        a.addEventListener('click', () => {
+          centerTimelineItem(a);
+        });
+
+        row.appendChild(a);
+      });
+    }
+
+    function clearTodayHighlights(){
+      document.querySelectorAll('.card.today').forEach(el => el.classList.remove('today'));
+      document.querySelectorAll('.tpill.today').forEach(el => el.classList.remove('today'));
+    }
+
+    function highlightCardByDate(mmdd){
+      clearTodayHighlights();
+
+      const card = document.querySelector(`.card[data-date="${mmdd}"]`);
+      const timelineItem = document.querySelector(`.titem[data-date="${mmdd}"]`);
+      const timelinePill = timelineItem ? timelineItem.querySelector('.tpill') : null;
+
+      if(card) card.classList.add('today');
+      if(timelinePill) timelinePill.classList.add('today');
+      if(timelineItem) centerTimelineItem(timelineItem, 'auto');
+
+      return !!card;
+    }
+
+    function highlightTodayOrLatest(){
+      const todayMMDD = getTodayMMDD();
+      const foundToday = highlightCardByDate(todayMMDD);
+      if(foundToday) return;
+
+      const firstCard = document.querySelector('#cards .card[data-date]');
       if(!firstCard) return;
 
-      document.querySelectorAll('.card.today').forEach(c => c.classList.remove('today'));
-      firstCard.classList.add('today');
+      highlightCardByDate(firstCard.dataset.date);
+    }
+
+    function initTodayBadge(){
+      const badge = document.getElementById('todayBadge');
+      if(!badge) return;
+
+      badge.addEventListener('click', () => {
+        const todayMMDD = getTodayMMDD();
+        let targetCard = document.querySelector(`.card[data-date="${todayMMDD}"]`);
+
+        if(!targetCard){
+          targetCard = document.querySelector('#cards .card[data-date]');
+        }
+
+        if(targetCard){
+          targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          highlightCardByDate(targetCard.dataset.date);
+        }
+      });
     }
 
     async function forceDownload(url){
@@ -1334,6 +1466,7 @@
       try{
         const res = await fetch(url, { mode:'cors', cache:'no-store' });
         if(!res.ok) throw new Error('fetch failed');
+
         const blob = await res.blob();
         const blobUrl = URL.createObjectURL(blob);
 
@@ -1345,17 +1478,18 @@
         b.click();
         document.body.removeChild(b);
 
-        setTimeout(()=>URL.revokeObjectURL(blobUrl), 1500);
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 1500);
       }catch(e){
         window.open(url, '_blank', 'noopener');
       }
     }
 
     function initDownloads(){
-      document.querySelectorAll('a.link[href$=".mp3"]').forEach(link=>{
+      document.querySelectorAll('a.link[href$=".mp3"]').forEach(link => {
         link.textContent = '파일다운';
-        link.setAttribute('role','button');
-        link.addEventListener('click', (e)=>{
+        link.setAttribute('role', 'button');
+
+        link.addEventListener('click', (e) => {
           e.preventDefault();
           e.stopPropagation();
           const url = link.getAttribute('href');
@@ -1368,21 +1502,20 @@
       const players = Array.from(document.querySelectorAll('.mplayer[data-audio-src]'));
       const audios = players.map(p => p.querySelector('audio')).filter(Boolean);
 
-      const stopOthers = (currentAudio)=>{
-        audios.forEach(a=>{
-          if(a && a !== currentAudio) a.pause();
+      const stopOthers = (currentAudio) => {
+        audios.forEach(audio => {
+          if(audio && audio !== currentAudio) audio.pause();
         });
       };
 
-      players.forEach(p=>{
-        const src   = p.getAttribute('data-audio-src');
-        const audio = p.querySelector('audio');
-        const btn   = p.querySelector('.mp-btn');
-        const seek  = p.querySelector('.mp-seek');
-        const time  = p.querySelector('.mp-time');
-
-        const volBtn  = p.querySelector('.mp-volbtn');
-        const vol     = p.querySelector('.mp-vol');
+      players.forEach(player => {
+        const src = player.getAttribute('data-audio-src');
+        const audio = player.querySelector('audio');
+        const btn = player.querySelector('.mp-btn');
+        const seek = player.querySelector('.mp-seek');
+        const time = player.querySelector('.mp-time');
+        const volBtn = player.querySelector('.mp-volbtn');
+        const vol = player.querySelector('.mp-vol');
 
         if(!src || !audio || !btn || !seek || !time) return;
 
@@ -1390,7 +1523,13 @@
         audio.preload = 'metadata';
 
         let lastVolume = 1;
-        const setVolUI = ()=>{
+
+        const setBtn = () => {
+          btn.textContent = audio.paused ? '▶' : '❚❚';
+          btn.setAttribute('aria-label', audio.paused ? '재생' : '일시정지');
+        };
+
+        const setVolUI = () => {
           if(!vol || !volBtn) return;
           const v = audio.muted ? 0 : audio.volume;
           vol.value = Math.round(v * 100);
@@ -1403,7 +1542,7 @@
           audio.muted = false;
           vol.value = 100;
 
-          vol.addEventListener('input', ()=>{
+          vol.addEventListener('input', () => {
             const v = Math.max(0, Math.min(100, Number(vol.value))) / 100;
             audio.volume = v;
             audio.muted = (v === 0);
@@ -1413,7 +1552,7 @@
         }
 
         if(volBtn){
-          volBtn.addEventListener('click', ()=>{
+          volBtn.addEventListener('click', () => {
             if(audio.muted || audio.volume === 0){
               audio.muted = false;
               audio.volume = lastVolume > 0 ? lastVolume : 1;
@@ -1425,39 +1564,39 @@
           });
         }
 
-        const setBtn = ()=>{
-          btn.textContent = audio.paused ? '▶' : '❚❚';
-          btn.setAttribute('aria-label', audio.paused ? '재생' : '일시정지');
-        };
-
-        btn.addEventListener('click', async ()=>{
+        btn.addEventListener('click', async () => {
           stopOthers(audio);
 
           if(audio.paused){
-            try{ await audio.play(); }catch(err){}
+            try{
+              await audio.play();
+            }catch(err){}
           }else{
             audio.pause();
           }
+
           setBtn();
         });
 
-        audio.addEventListener('loadedmetadata', ()=>{
-          time.textContent = '0:00 · -' + fmt(audio.duration);
+        audio.addEventListener('loadedmetadata', () => {
+          time.textContent = `0:00 · -${fmt(audio.duration)}`;
         });
 
-        audio.addEventListener('timeupdate', ()=>{
+        audio.addEventListener('timeupdate', () => {
           seek.value = (audio.currentTime / audio.duration) * 100 || 0;
-          const remain = isFinite(audio.duration) ? Math.max(0, audio.duration - audio.currentTime) : 0;
-          time.textContent = fmt(audio.currentTime) + ' · -' + fmt(remain);
+          const remain = isFinite(audio.duration)
+            ? Math.max(0, audio.duration - audio.currentTime)
+            : 0;
+          time.textContent = `${fmt(audio.currentTime)} · -${fmt(remain)}`;
         });
 
-        seek.addEventListener('input', ()=>{
+        seek.addEventListener('input', () => {
           if(audio.duration){
-            audio.currentTime = (seek.value/100) * audio.duration;
+            audio.currentTime = (seek.value / 100) * audio.duration;
           }
         });
 
-        audio.addEventListener('ended', ()=>{
+        audio.addEventListener('ended', () => {
           seek.value = 0;
           setBtn();
         });
@@ -1471,11 +1610,12 @@
       });
     }
 
-    document.addEventListener('DOMContentLoaded', ()=>{
+    document.addEventListener('DOMContentLoaded', () => {
       setTodayText();
       reorderByDateDesc();
-      highlightLatestCard();
-      initTimeline();
+      buildTimelineFromCards();
+      highlightTodayOrLatest();
+      initTodayBadge();
       initDownloads();
       initPlayers();
     });
